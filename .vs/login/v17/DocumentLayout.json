@@ -1,26 +1,34 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Sofi Reyes\\source\\repos\\login\\",
+  "WorkspaceRootPath": "C:\\Users\\katyg\\Source\\Repos\\login\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8F039901-AE61-4265-BE0C-94486B1F3D98}|login\\login.csproj|C:\\Users\\Sofi Reyes\\source\\repos\\login\\login\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{8F039901-AE61-4265-BE0C-94486B1F3D98}|login\\login.csproj|solutionrelative:login\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8F039901-AE61-4265-BE0C-94486B1F3D98}|login\\login.csproj|c:\\users\\sofi reyes\\source\\repos\\login\\login\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{8F039901-AE61-4265-BE0C-94486B1F3D98}|login\\login.csproj|solutionrelative:login\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8F039901-AE61-4265-BE0C-94486B1F3D98}|login\\login.csproj|C:\\Users\\Sofi Reyes\\source\\repos\\login\\login\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8F039901-AE61-4265-BE0C-94486B1F3D98}|login\\login.csproj|solutionrelative:login\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8F039901-AE61-4265-BE0C-94486B1F3D98}|login\\login.csproj|C:\\Users\\Sofi Reyes\\source\\repos\\login\\login\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{8F039901-AE61-4265-BE0C-94486B1F3D98}|login\\login.csproj|c:\\users\\katyg\\source\\repos\\login\\login\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8F039901-AE61-4265-BE0C-94486B1F3D98}|login\\login.csproj|solutionrelative:login\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8F039901-AE61-4265-BE0C-94486B1F3D98}|login\\login.csproj|C:\\Users\\Sofi Reyes\\source\\repos\\login\\login\\menu.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{8F039901-AE61-4265-BE0C-94486B1F3D98}|login\\login.csproj|C:\\Users\\katyg\\Source\\Repos\\login\\login\\mantenimientoproductos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{8F039901-AE61-4265-BE0C-94486B1F3D98}|login\\login.csproj|solutionrelative:login\\mantenimientoproductos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8F039901-AE61-4265-BE0C-94486B1F3D98}|login\\login.csproj|C:\\Users\\katyg\\Source\\Repos\\login\\login\\menu.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8F039901-AE61-4265-BE0C-94486B1F3D98}|login\\login.csproj|solutionrelative:login\\menu.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8F039901-AE61-4265-BE0C-94486B1F3D98}|login\\login.csproj|C:\\Users\\katyg\\Source\\Repos\\login\\login\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{8F039901-AE61-4265-BE0C-94486B1F3D98}|login\\login.csproj|solutionrelative:login\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8F039901-AE61-4265-BE0C-94486B1F3D98}|login\\login.csproj|C:\\Users\\katyg\\Source\\Repos\\login\\login\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8F039901-AE61-4265-BE0C-94486B1F3D98}|login\\login.csproj|solutionrelative:login\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8F039901-AE61-4265-BE0C-94486B1F3D98}|login\\login.csproj|C:\\Users\\katyg\\Source\\Repos\\login\\login\\mantenimientoproductos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8F039901-AE61-4265-BE0C-94486B1F3D98}|login\\login.csproj|solutionrelative:login\\mantenimientoproductos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8F039901-AE61-4265-BE0C-94486B1F3D98}|login\\login.csproj|C:\\Users\\katyg\\Source\\Repos\\login\\login\\mantenimientoproductos.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8F039901-AE61-4265-BE0C-94486B1F3D98}|login\\login.csproj|solutionrelative:login\\mantenimientoproductos.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,66 +46,86 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "menu.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\Sofi Reyes\\source\\repos\\login\\login\\menu.Designer.cs",
-              "RelativeDocumentMoniker": "login\\menu.Designer.cs",
-              "ToolTip": "C:\\Users\\Sofi Reyes\\source\\repos\\login\\login\\menu.Designer.cs",
-              "RelativeToolTip": "login\\menu.Designer.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAqwCAAAAAIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-01T02:41:47.902Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "menu.cs",
-              "DocumentMoniker": "C:\\Users\\Sofi Reyes\\source\\repos\\login\\login\\menu.cs",
+              "DocumentMoniker": "C:\\Users\\katyg\\Source\\Repos\\login\\login\\menu.cs",
               "RelativeDocumentMoniker": "login\\menu.cs",
-              "ToolTip": "C:\\Users\\Sofi Reyes\\source\\repos\\login\\login\\menu.cs",
+              "ToolTip": "C:\\Users\\katyg\\Source\\Repos\\login\\login\\menu.cs",
               "RelativeToolTip": "login\\menu.cs",
-              "ViewState": "AQIAACEAAAAAAAAAAAAYwEIAAABFAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAEMAAABBAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-01T00:34:32.905Z",
+              "WhenOpened": "2024-04-02T05:49:07.918Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "menu.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\Sofi Reyes\\source\\repos\\login\\login\\menu.cs",
-              "RelativeDocumentMoniker": "login\\menu.cs",
-              "ToolTip": "C:\\Users\\Sofi Reyes\\source\\repos\\login\\login\\menu.cs [Dise\u00F1o]",
-              "RelativeToolTip": "login\\menu.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-01T00:04:03.399Z",
-              "EditorCaption": " [Dise\u00F1o]"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Form1.cs",
-              "DocumentMoniker": "C:\\Users\\Sofi Reyes\\source\\repos\\login\\login\\Form1.cs",
-              "RelativeDocumentMoniker": "login\\Form1.cs",
-              "ToolTip": "C:\\Users\\Sofi Reyes\\source\\repos\\login\\login\\Form1.cs",
-              "RelativeToolTip": "login\\Form1.cs",
-              "ViewState": "AQIAAFsAAAAAAAAAAAA3wGkAAAAnAAAA",
+              "Title": "menu.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\katyg\\Source\\Repos\\login\\login\\menu.Designer.cs",
+              "RelativeDocumentMoniker": "login\\menu.Designer.cs",
+              "ToolTip": "C:\\Users\\katyg\\Source\\Repos\\login\\login\\menu.Designer.cs",
+              "RelativeToolTip": "login\\menu.Designer.cs",
+              "ViewState": "AQIAABcAAAAAAAAAAAAQwLkBAAAqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-01T04:00:03.526Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-02T05:48:02.622Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Form1.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\Sofi Reyes\\source\\repos\\login\\login\\Form1.cs",
-              "RelativeDocumentMoniker": "login\\Form1.cs",
-              "ToolTip": "C:\\Users\\Sofi Reyes\\source\\repos\\login\\login\\Form1.cs [Dise\u00F1o]",
-              "RelativeToolTip": "login\\Form1.cs [Dise\u00F1o]",
+              "DocumentIndex": 1,
+              "Title": "MantenimientoProductos.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\katyg\\Source\\Repos\\login\\login\\MantenimientoProductos.cs",
+              "RelativeDocumentMoniker": "login\\MantenimientoProductos.cs",
+              "ToolTip": "C:\\Users\\katyg\\Source\\Repos\\login\\login\\MantenimientoProductos.cs [Design]",
+              "RelativeToolTip": "login\\MantenimientoProductos.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-01T00:03:27.252Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2024-04-02T05:46:32.901Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "menu.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\katyg\\Source\\Repos\\login\\login\\menu.cs",
+              "RelativeDocumentMoniker": "login\\menu.cs",
+              "ToolTip": "C:\\Users\\katyg\\Source\\Repos\\login\\login\\menu.cs [Design]",
+              "RelativeToolTip": "login\\menu.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-02T05:46:15.437Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Form1.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\katyg\\Source\\Repos\\login\\login\\Form1.Designer.cs",
+              "RelativeDocumentMoniker": "login\\Form1.Designer.cs",
+              "ToolTip": "C:\\Users\\katyg\\Source\\Repos\\login\\login\\Form1.Designer.cs",
+              "RelativeToolTip": "login\\Form1.Designer.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-02T05:25:04.385Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MantenimientoProductos.cs",
+              "DocumentMoniker": "C:\\Users\\katyg\\Source\\Repos\\login\\login\\MantenimientoProductos.cs",
+              "RelativeDocumentMoniker": "login\\MantenimientoProductos.cs",
+              "ToolTip": "C:\\Users\\katyg\\Source\\Repos\\login\\login\\MantenimientoProductos.cs",
+              "RelativeToolTip": "login\\MantenimientoProductos.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAAVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-02T05:14:22.206Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "MantenimientoProductos.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\katyg\\Source\\Repos\\login\\login\\MantenimientoProductos.Designer.cs",
+              "RelativeDocumentMoniker": "login\\MantenimientoProductos.Designer.cs",
+              "ToolTip": "C:\\Users\\katyg\\Source\\Repos\\login\\login\\MantenimientoProductos.Designer.cs",
+              "RelativeToolTip": "login\\MantenimientoProductos.Designer.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-02T05:13:40.101Z"
             }
           ]
         }

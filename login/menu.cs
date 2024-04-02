@@ -64,7 +64,7 @@ namespace login
 
         private void btnMProductos_Click(object sender, EventArgs e)
         {
-            //opencatalogoForm(new colocar el nombre del formulario());
+            opencontenedorForm(new Mantenimiento_de_Productos());
             //se coloca el codigo del enlace a lo que corresponde
             hideSubMenu();
         }
