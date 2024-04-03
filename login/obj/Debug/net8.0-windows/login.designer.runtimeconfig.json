@@ -12,8 +12,8 @@
       }
     ],
     "additionalProbingPaths": [
-      "C:\\Users\\katyg\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\katyg\\.nuget\\packages"
+      "C:\\Users\\astri.DESKTOP-KG4HH30\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\astri.DESKTOP-KG4HH30\\.nuget\\packages"
     ],
     "configProperties": {
       "System.Runtime.Serialization.EnableUnsafeBinaryFormatterSerialization": true,
