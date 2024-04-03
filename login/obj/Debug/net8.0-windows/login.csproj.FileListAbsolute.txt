@@ -16,3 +16,23 @@ C:\Users\Sofi Reyes\source\repos\login\login\obj\Debug\net8.0-windows\login.genr
 C:\Users\Sofi Reyes\source\repos\login\login\obj\Debug\net8.0-windows\ref\login.dll
 C:\Users\Sofi Reyes\source\repos\login\login\obj\Debug\net8.0-windows\login.Properties.Resources.resources
 C:\Users\Sofi Reyes\source\repos\login\login\obj\Debug\net8.0-windows\login.menu.resources
+C:\Users\katyg\Source\Repos\login\login\bin\Debug\net8.0-windows\login.exe
+C:\Users\katyg\Source\Repos\login\login\bin\Debug\net8.0-windows\login.deps.json
+C:\Users\katyg\Source\Repos\login\login\bin\Debug\net8.0-windows\login.runtimeconfig.json
+C:\Users\katyg\Source\Repos\login\login\bin\Debug\net8.0-windows\login.dll
+C:\Users\katyg\Source\Repos\login\login\bin\Debug\net8.0-windows\login.pdb
+C:\Users\katyg\Source\Repos\login\login\obj\Debug\net8.0-windows\login.Form1.resources
+C:\Users\katyg\Source\Repos\login\login\obj\Debug\net8.0-windows\login.Mantenimiento_de_Productos.resources
+C:\Users\katyg\Source\Repos\login\login\obj\Debug\net8.0-windows\login.menu.resources
+C:\Users\katyg\Source\Repos\login\login\obj\Debug\net8.0-windows\login.Properties.Resources.resources
+C:\Users\katyg\Source\Repos\login\login\obj\Debug\net8.0-windows\login.csproj.GenerateResource.cache
+C:\Users\katyg\Source\Repos\login\login\obj\Debug\net8.0-windows\login.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\katyg\Source\Repos\login\login\obj\Debug\net8.0-windows\login.AssemblyInfoInputs.cache
+C:\Users\katyg\Source\Repos\login\login\obj\Debug\net8.0-windows\login.AssemblyInfo.cs
+C:\Users\katyg\Source\Repos\login\login\obj\Debug\net8.0-windows\login.csproj.CoreCompileInputs.cache
+C:\Users\katyg\Source\Repos\login\login\obj\Debug\net8.0-windows\login.sourcelink.json
+C:\Users\katyg\Source\Repos\login\login\obj\Debug\net8.0-windows\login.dll
+C:\Users\katyg\Source\Repos\login\login\obj\Debug\net8.0-windows\refint\login.dll
+C:\Users\katyg\Source\Repos\login\login\obj\Debug\net8.0-windows\login.pdb
+C:\Users\katyg\Source\Repos\login\login\obj\Debug\net8.0-windows\login.genruntimeconfig.cache
+C:\Users\katyg\Source\Repos\login\login\obj\Debug\net8.0-windows\ref\login.dll
