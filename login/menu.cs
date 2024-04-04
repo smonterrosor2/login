@@ -71,13 +71,13 @@ namespace login
 
         private void btnCProdutos_Click(object sender, EventArgs e)
         {
-            //se coloca el codigo del enlace a lo que corresponde
+            opencontenedorForm(new CategoriaProductos());
             hideSubMenu();
         }
 
         private void btnMMarca_Click(object sender, EventArgs e)
         {
-            //se coloca el codigo del enlace a lo que corresponde
+            opencontenedorForm(new MantenimientoMarca());
             hideSubMenu();
         }
         //boton principal PROCESOS

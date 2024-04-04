@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\katyg\\Source\\Repos\\login\\login\\login.csproj": {}
+    "C:\\Users\\astri.DESKTOP-KG4HH30\\source\\repos\\login\\login\\login.csproj": {}
   },
   "projects": {
-    "C:\\Users\\katyg\\Source\\Repos\\login\\login\\login.csproj": {
+    "C:\\Users\\astri.DESKTOP-KG4HH30\\source\\repos\\login\\login\\login.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\katyg\\Source\\Repos\\login\\login\\login.csproj",
+        "projectUniqueName": "C:\\Users\\astri.DESKTOP-KG4HH30\\source\\repos\\login\\login\\login.csproj",
         "projectName": "login",
-        "projectPath": "C:\\Users\\katyg\\Source\\Repos\\login\\login\\login.csproj",
-        "packagesPath": "C:\\Users\\katyg\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\katyg\\Source\\Repos\\login\\login\\obj\\",
+        "projectPath": "C:\\Users\\astri.DESKTOP-KG4HH30\\source\\repos\\login\\login\\login.csproj",
+        "packagesPath": "C:\\Users\\astri.DESKTOP-KG4HH30\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\astri.DESKTOP-KG4HH30\\source\\repos\\login\\login\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\katyg\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\astri.DESKTOP-KG4HH30\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -63,7 +63,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
