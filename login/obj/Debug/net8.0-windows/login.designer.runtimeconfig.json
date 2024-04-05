@@ -12,8 +12,9 @@
       }
     ],
     "additionalProbingPaths": [
-      "C:\\Users\\astri.DESKTOP-KG4HH30\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\astri.DESKTOP-KG4HH30\\.nuget\\packages"
+      "C:\\Users\\Kevin Esquivel\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Kevin Esquivel\\.nuget\\packages",
+      "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
     ],
     "configProperties": {
       "System.Runtime.Serialization.EnableUnsafeBinaryFormatterSerialization": true,

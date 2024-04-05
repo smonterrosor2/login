@@ -77,7 +77,7 @@
             linkLabel1.AutoSize = true;
             linkLabel1.Location = new Point(471, 105);
             linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(0, 17);
+            linkLabel1.Size = new Size(0, 16);
             linkLabel1.TabIndex = 1;
             // 
             // linkLabel2
@@ -85,7 +85,7 @@
             linkLabel2.AutoSize = true;
             linkLabel2.Location = new Point(383, 128);
             linkLabel2.Name = "linkLabel2";
-            linkLabel2.Size = new Size(0, 17);
+            linkLabel2.Size = new Size(0, 16);
             linkLabel2.TabIndex = 2;
             // 
             // textuser
@@ -96,7 +96,7 @@
             textuser.ForeColor = SystemColors.InactiveBorder;
             textuser.Location = new Point(333, 124);
             textuser.Name = "textuser";
-            textuser.Size = new Size(387, 19);
+            textuser.Size = new Size(387, 15);
             textuser.TabIndex = 1;
             textuser.Text = "USUARIO";
             textuser.Enter += textuser_Enter;
@@ -110,7 +110,7 @@
             textpass.ForeColor = SystemColors.InactiveBorder;
             textpass.Location = new Point(333, 184);
             textpass.Name = "textpass";
-            textpass.Size = new Size(387, 19);
+            textpass.Size = new Size(387, 15);
             textpass.TabIndex = 2;
             textpass.Text = "CONTRASEÑA";
             textpass.Enter += textpass_Enter;
@@ -123,7 +123,7 @@
             label1.ForeColor = SystemColors.ButtonFace;
             label1.Location = new Point(275, 9);
             label1.Name = "label1";
-            label1.Size = new Size(370, 20);
+            label1.Size = new Size(293, 17);
             label1.TabIndex = 5;
             label1.Text = "BIENVENIDOS AL PROGRAMA DE INVENTARIO S.A.";
             // 
@@ -134,7 +134,7 @@
             label2.ForeColor = SystemColors.ButtonFace;
             label2.Location = new Point(428, 44);
             label2.Name = "label2";
-            label2.Size = new Size(73, 23);
+            label2.Size = new Size(62, 21);
             label2.TabIndex = 6;
             label2.Text = "LOGIN";
             // 
@@ -145,7 +145,7 @@
             btnlogin.FlatStyle = FlatStyle.Flat;
             btnlogin.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnlogin.ForeColor = SystemColors.ButtonHighlight;
-            btnlogin.Location = new Point(330, 226);
+            btnlogin.Location = new Point(333, 226);
             btnlogin.Name = "btnlogin";
             btnlogin.Size = new Size(373, 40);
             btnlogin.TabIndex = 3;
@@ -161,7 +161,7 @@
             linkpass.LinkColor = Color.Gray;
             linkpass.Location = new Point(409, 294);
             linkpass.Name = "linkpass";
-            linkpass.Size = new Size(198, 17);
+            linkpass.Size = new Size(168, 16);
             linkpass.TabIndex = 0;
             linkpass.TabStop = true;
             linkpass.Text = "¿Ha olvidado la contraseña?";
@@ -217,7 +217,7 @@
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(8F, 17F);
+            AutoScaleDimensions = new SizeF(6F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(0, 0, 64);
             BackgroundImageLayout = ImageLayout.None;
