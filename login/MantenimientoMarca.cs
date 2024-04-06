@@ -171,10 +171,18 @@ namespace login
             // Obtiene el código ingresado por el usuario
             string codigoMarca = textCodigo.Text;
 
-            // Llama al método para eliminar la marca
-            EliminarMarca(codigoMarca);
+            // Muestra un mensaje de confirmación antes de proceder con la eliminación
+            var confirmResult = MessageBox.Show("¿Estás seguro de que deseas eliminar esta marca?",
+                                                 "Confirmar eliminación",
+                                                 MessageBoxButtons.YesNo);
+            if (confirmResult == DialogResult.Yes)
+            {
+                // Llama al método para eliminar la marca
+                EliminarMarca(codigoMarca);
 
-            LimpiarCampos();
+                LimpiarCampos();
+            }
+            
         }
 
         private void EliminarMarca(string codigoMarca)

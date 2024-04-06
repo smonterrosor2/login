@@ -180,10 +180,18 @@ namespace login
         {
             string codigoCategoria = textCategoria.Text;
 
-            // Llama al método para eliminar los datos
-            EliminarCategoria(codigoCategoria);
+            // Muestra un mensaje de confirmación antes de proceder con la eliminación
+            var confirmResult = MessageBox.Show("¿Estás seguro de que deseas eliminar esta categoria?",
+                                                 "Confirmar eliminación",
+                                                 MessageBoxButtons.YesNo);
+            if (confirmResult == DialogResult.Yes)
+            {
+                // Llama al método para eliminar los datos
+                EliminarCategoria(codigoCategoria);
 
-            LimpiarCampos();
+                LimpiarCampos();
+            }
+
         }
 
         private void EliminarCategoria(string codigoCategoria)
@@ -234,6 +242,11 @@ namespace login
             textCategoria.Text = "";
             textNombre.Text = "";
             textDescripcion.Text = "";
+        }
+
+        private void labelCategoria_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

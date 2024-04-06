@@ -31,43 +31,42 @@
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
-            textBox1 = new TextBox();
+            textCodigo = new TextBox();
             label4 = new Label();
             label5 = new Label();
-            textBox2 = new TextBox();
+            textReferencia = new TextBox();
             label6 = new Label();
-            textBox3 = new TextBox();
+            textNombre = new TextBox();
             label7 = new Label();
             label8 = new Label();
             label9 = new Label();
-            comboBox1 = new ComboBox();
-            textBox4 = new TextBox();
+            comboCategoria = new ComboBox();
+            textPrecio = new TextBox();
             button1 = new Button();
-            button2 = new Button();
+            buttLimpiar = new Button();
             button3 = new Button();
             button4 = new Button();
-            textBox5 = new TextBox();
+            textPresentacion = new TextBox();
             label10 = new Label();
-            comboBox2 = new ComboBox();
+            comboMarca = new ComboBox();
+            buttBuscar = new Button();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(193, 68);
-            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.Location = new Point(135, 41);
             label1.Name = "label1";
-            label1.Size = new Size(0, 25);
+            label1.Size = new Size(0, 15);
             label1.TabIndex = 0;
             label1.Click += label1_Click;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(353, 113);
-            label2.Margin = new Padding(4, 0, 4, 0);
+            label2.Location = new Point(247, 68);
             label2.Name = "label2";
-            label2.Size = new Size(0, 25);
+            label2.Size = new Size(0, 15);
             label2.TabIndex = 1;
             // 
             // label3
@@ -75,29 +74,26 @@
             label3.AutoSize = true;
             label3.Font = new Font("Segoe Fluent Icons", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = SystemColors.ButtonHighlight;
-            label3.Location = new Point(473, 15);
-            label3.Margin = new Padding(4, 0, 4, 0);
+            label3.Location = new Point(331, 9);
             label3.Name = "label3";
-            label3.Size = new Size(393, 36);
+            label3.Size = new Size(267, 24);
             label3.TabIndex = 2;
             label3.Text = "Mantenimiento de Productos";
             // 
-            // textBox1
+            // textCodigo
             // 
-            textBox1.Location = new Point(197, 160);
-            textBox1.Margin = new Padding(4, 5, 4, 5);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(398, 31);
-            textBox1.TabIndex = 3;
+            textCodigo.Location = new Point(138, 96);
+            textCodigo.Name = "textCodigo";
+            textCodigo.Size = new Size(206, 23);
+            textCodigo.TabIndex = 3;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(50, 162);
-            label4.Margin = new Padding(4, 0, 4, 0);
+            label4.Location = new Point(35, 97);
             label4.Name = "label4";
-            label4.Size = new Size(83, 28);
+            label4.Size = new Size(56, 17);
             label4.TabIndex = 4;
             label4.Text = "Código:";
             label4.Click += label4_Click;
@@ -106,48 +102,43 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.Location = new Point(654, 162);
-            label5.Margin = new Padding(4, 0, 4, 0);
+            label5.Location = new Point(458, 97);
             label5.Name = "label5";
-            label5.Size = new Size(118, 28);
+            label5.Size = new Size(76, 17);
             label5.TabIndex = 5;
             label5.Text = "Referencia:";
             // 
-            // textBox2
+            // textReferencia
             // 
-            textBox2.Location = new Point(807, 162);
-            textBox2.Margin = new Padding(4, 5, 4, 5);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(398, 31);
-            textBox2.TabIndex = 6;
+            textReferencia.Location = new Point(565, 97);
+            textReferencia.Name = "textReferencia";
+            textReferencia.Size = new Size(280, 23);
+            textReferencia.TabIndex = 6;
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.Location = new Point(50, 277);
-            label6.Margin = new Padding(4, 0, 4, 0);
+            label6.Location = new Point(35, 166);
             label6.Name = "label6";
-            label6.Size = new Size(94, 28);
+            label6.Size = new Size(62, 17);
             label6.TabIndex = 7;
             label6.Text = "Nombre:";
             // 
-            // textBox3
+            // textNombre
             // 
-            textBox3.Location = new Point(197, 275);
-            textBox3.Margin = new Padding(4, 5, 4, 5);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(1008, 31);
-            textBox3.TabIndex = 8;
+            textNombre.Location = new Point(138, 165);
+            textNombre.Name = "textNombre";
+            textNombre.Size = new Size(707, 23);
+            textNombre.TabIndex = 8;
             // 
             // label7
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.Location = new Point(50, 422);
-            label7.Margin = new Padding(4, 0, 4, 0);
+            label7.Location = new Point(35, 253);
             label7.Name = "label7";
-            label7.Size = new Size(139, 28);
+            label7.Size = new Size(91, 17);
             label7.TabIndex = 9;
             label7.Text = "Presentación:";
             // 
@@ -155,10 +146,9 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label8.Location = new Point(50, 547);
-            label8.Margin = new Padding(4, 0, 4, 0);
+            label8.Location = new Point(35, 328);
             label8.Name = "label8";
-            label8.Size = new Size(108, 28);
+            label8.Size = new Size(71, 17);
             label8.TabIndex = 10;
             label8.Text = "Categoría:";
             // 
@@ -166,138 +156,158 @@
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label9.Location = new Point(654, 547);
-            label9.Margin = new Padding(4, 0, 4, 0);
+            label9.Location = new Point(458, 328);
             label9.Name = "label9";
-            label9.Size = new Size(76, 28);
+            label9.Size = new Size(50, 17);
             label9.TabIndex = 11;
             label9.Text = "Precio:";
             label9.Click += label9_Click;
             // 
-            // comboBox1
+            // comboCategoria
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(197, 537);
-            comboBox1.Margin = new Padding(4, 5, 4, 5);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(398, 33);
-            comboBox1.TabIndex = 13;
+            comboCategoria.FormattingEnabled = true;
+            comboCategoria.Location = new Point(138, 322);
+            comboCategoria.Name = "comboCategoria";
+            comboCategoria.Size = new Size(280, 23);
+            comboCategoria.TabIndex = 13;
             // 
-            // textBox4
+            // textPrecio
             // 
-            textBox4.Location = new Point(807, 537);
-            textBox4.Margin = new Padding(4, 5, 4, 5);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(398, 31);
-            textBox4.TabIndex = 15;
+            textPrecio.Location = new Point(565, 322);
+            textPrecio.Name = "textPrecio";
+            textPrecio.Size = new Size(280, 23);
+            textPrecio.TabIndex = 15;
             // 
             // button1
             // 
             button1.BackColor = Color.FromArgb(0, 0, 64);
-            button1.FlatStyle = FlatStyle.Popup;
-            button1.Location = new Point(197, 773);
-            button1.Margin = new Padding(4, 5, 4, 5);
+            button1.FlatAppearance.BorderSize = 0;
+            button1.FlatAppearance.MouseDownBackColor = Color.FromArgb(0, 0, 64);
+            button1.FlatAppearance.MouseOverBackColor = Color.Navy;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Location = new Point(138, 464);
             button1.Name = "button1";
-            button1.Size = new Size(166, 50);
+            button1.Size = new Size(116, 30);
             button1.TabIndex = 16;
             button1.Text = "Nuevo";
             button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
-            // button2
+            // buttLimpiar
             // 
-            button2.BackColor = Color.FromArgb(0, 0, 64);
-            button2.FlatStyle = FlatStyle.Popup;
-            button2.Location = new Point(473, 773);
-            button2.Margin = new Padding(4, 5, 4, 5);
-            button2.Name = "button2";
-            button2.Size = new Size(166, 50);
-            button2.TabIndex = 17;
-            button2.Text = "Guardar";
-            button2.UseVisualStyleBackColor = false;
+            buttLimpiar.BackColor = Color.FromArgb(0, 0, 64);
+            buttLimpiar.FlatAppearance.BorderSize = 0;
+            buttLimpiar.FlatAppearance.MouseDownBackColor = Color.FromArgb(0, 0, 64);
+            buttLimpiar.FlatAppearance.MouseOverBackColor = Color.Navy;
+            buttLimpiar.FlatStyle = FlatStyle.Flat;
+            buttLimpiar.Location = new Point(539, 464);
+            buttLimpiar.Name = "buttLimpiar";
+            buttLimpiar.Size = new Size(116, 30);
+            buttLimpiar.TabIndex = 17;
+            buttLimpiar.Text = "Limpiar";
+            buttLimpiar.UseVisualStyleBackColor = false;
+            buttLimpiar.Click += buttLimpiar_Click;
             // 
             // button3
             // 
             button3.BackColor = Color.FromArgb(0, 0, 64);
-            button3.FlatStyle = FlatStyle.Popup;
-            button3.Location = new Point(769, 773);
-            button3.Margin = new Padding(4, 5, 4, 5);
+            button3.FlatAppearance.BorderSize = 0;
+            button3.FlatAppearance.MouseDownBackColor = Color.FromArgb(0, 0, 64);
+            button3.FlatAppearance.MouseOverBackColor = Color.DarkRed;
+            button3.FlatStyle = FlatStyle.Flat;
+            button3.Location = new Point(729, 464);
             button3.Name = "button3";
-            button3.Size = new Size(166, 50);
+            button3.Size = new Size(116, 30);
             button3.TabIndex = 18;
             button3.Text = "Eliminar";
             button3.UseVisualStyleBackColor = false;
+            button3.Click += button3_Click;
             // 
             // button4
             // 
             button4.BackColor = Color.FromArgb(0, 0, 64);
-            button4.FlatStyle = FlatStyle.Popup;
-            button4.Location = new Point(1041, 773);
-            button4.Margin = new Padding(4, 5, 4, 5);
+            button4.FlatAppearance.BorderSize = 0;
+            button4.FlatAppearance.MouseDownBackColor = Color.FromArgb(0, 0, 64);
+            button4.FlatAppearance.MouseOverBackColor = Color.Navy;
+            button4.FlatStyle = FlatStyle.Flat;
+            button4.Location = new Point(331, 464);
             button4.Name = "button4";
-            button4.Size = new Size(166, 50);
+            button4.Size = new Size(116, 30);
             button4.TabIndex = 19;
             button4.Text = "Modificar";
             button4.UseVisualStyleBackColor = false;
+            button4.Click += button4_Click;
             // 
-            // textBox5
+            // textPresentacion
             // 
-            textBox5.Location = new Point(197, 412);
-            textBox5.Margin = new Padding(4, 5, 4, 5);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(1008, 31);
-            textBox5.TabIndex = 20;
+            textPresentacion.Location = new Point(138, 247);
+            textPresentacion.Name = "textPresentacion";
+            textPresentacion.Size = new Size(707, 23);
+            textPresentacion.TabIndex = 20;
             // 
             // label10
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label10.Location = new Point(50, 658);
-            label10.Margin = new Padding(4, 0, 4, 0);
+            label10.Location = new Point(35, 395);
             label10.Name = "label10";
-            label10.Size = new Size(76, 28);
+            label10.Size = new Size(49, 17);
             label10.TabIndex = 21;
             label10.Text = "Marca:";
             label10.Click += label10_Click;
             // 
-            // comboBox2
+            // comboMarca
             // 
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(193, 658);
-            comboBox2.Margin = new Padding(4, 5, 4, 5);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(398, 33);
-            comboBox2.TabIndex = 22;
+            comboMarca.FormattingEnabled = true;
+            comboMarca.Location = new Point(138, 395);
+            comboMarca.Name = "comboMarca";
+            comboMarca.Size = new Size(280, 23);
+            comboMarca.TabIndex = 22;
+            // 
+            // buttBuscar
+            // 
+            buttBuscar.BackColor = Color.FromArgb(0, 0, 64);
+            buttBuscar.FlatAppearance.BorderSize = 0;
+            buttBuscar.FlatStyle = FlatStyle.Flat;
+            buttBuscar.ForeColor = SystemColors.ControlLightLight;
+            buttBuscar.Location = new Point(352, 95);
+            buttBuscar.Name = "buttBuscar";
+            buttBuscar.Size = new Size(66, 25);
+            buttBuscar.TabIndex = 60;
+            buttBuscar.Text = "Buscar";
+            buttBuscar.UseVisualStyleBackColor = false;
+            buttBuscar.Click += buttBuscar_Click;
             // 
             // Mantenimiento_de_Productos
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(1351, 893);
-            Controls.Add(comboBox2);
+            ClientSize = new Size(946, 538);
+            Controls.Add(buttBuscar);
+            Controls.Add(comboMarca);
             Controls.Add(label10);
-            Controls.Add(textBox5);
+            Controls.Add(textPresentacion);
             Controls.Add(button4);
             Controls.Add(button3);
-            Controls.Add(button2);
+            Controls.Add(buttLimpiar);
             Controls.Add(button1);
-            Controls.Add(textBox4);
-            Controls.Add(comboBox1);
+            Controls.Add(textPrecio);
+            Controls.Add(comboCategoria);
             Controls.Add(label9);
             Controls.Add(label8);
             Controls.Add(label7);
-            Controls.Add(textBox3);
+            Controls.Add(textNombre);
             Controls.Add(label6);
-            Controls.Add(textBox2);
+            Controls.Add(textReferencia);
             Controls.Add(label5);
             Controls.Add(label4);
-            Controls.Add(textBox1);
+            Controls.Add(textCodigo);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
             ForeColor = SystemColors.ControlLightLight;
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(4, 5, 4, 5);
             Name = "Mantenimiento_de_Productos";
             SizeGripStyle = SizeGripStyle.Show;
             Text = "Mantenimiento_de_Productos";
@@ -311,26 +321,27 @@
         private Label label1;
         private Label label2;
         private Label label3;
-        private TextBox textBox1;
+        private TextBox textCodigo;
         private Label label4;
         private Label label5;
-        private TextBox textBox2;
+        private TextBox textReferencia;
         private Label label6;
-        private TextBox textBox3;
+        private TextBox textNombre;
         private Label label7;
         private Label label8;
         private Label label9;
-        private ComboBox comboBox1;
-        private ComboBox comboBox2;
-        private TextBox textBox4;
+        private ComboBox comboCategoria;
+        private ComboBox comboMarca;
+        private TextBox textPrecio;
         private Button button1;
-        private Button button2;
+        private Button buttLimpiar;
         private Button button3;
         private Button button4;
-        private TextBox textBox5;
+        private TextBox textPresentacion;
         private Label label10;
         private PictureBox btncerrar;
         private PictureBox btnrestaurar;
         private PictureBox btnminimizar;
+        private Button buttBuscar;
     }
 }

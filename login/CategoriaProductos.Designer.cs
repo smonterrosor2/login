@@ -47,11 +47,12 @@
             // buttBuscar
             // 
             buttBuscar.BackColor = Color.FromArgb(0, 0, 64);
+            buttBuscar.FlatAppearance.BorderSize = 0;
             buttBuscar.FlatStyle = FlatStyle.Flat;
             buttBuscar.ForeColor = SystemColors.ControlLightLight;
-            buttBuscar.Location = new Point(685, 139);
+            buttBuscar.Location = new Point(685, 141);
             buttBuscar.Name = "buttBuscar";
-            buttBuscar.Size = new Size(66, 30);
+            buttBuscar.Size = new Size(66, 25);
             buttBuscar.TabIndex = 40;
             buttBuscar.Text = "Buscar";
             buttBuscar.UseVisualStyleBackColor = false;
@@ -62,10 +63,10 @@
             buttEliminar.BackColor = Color.FromArgb(0, 0, 64);
             buttEliminar.FlatAppearance.BorderSize = 0;
             buttEliminar.FlatAppearance.MouseDownBackColor = Color.FromArgb(0, 0, 64);
-            buttEliminar.FlatAppearance.MouseOverBackColor = Color.Navy;
+            buttEliminar.FlatAppearance.MouseOverBackColor = Color.DarkRed;
             buttEliminar.FlatStyle = FlatStyle.Flat;
             buttEliminar.ForeColor = SystemColors.ControlLightLight;
-            buttEliminar.Location = new Point(528, 464);
+            buttEliminar.Location = new Point(635, 464);
             buttEliminar.Name = "buttEliminar";
             buttEliminar.Size = new Size(116, 30);
             buttEliminar.TabIndex = 39;
@@ -81,11 +82,11 @@
             buttGuardar.FlatAppearance.MouseOverBackColor = Color.Navy;
             buttGuardar.FlatStyle = FlatStyle.Flat;
             buttGuardar.ForeColor = SystemColors.ControlLightLight;
-            buttGuardar.Location = new Point(321, 464);
+            buttGuardar.Location = new Point(499, 464);
             buttGuardar.Name = "buttGuardar";
             buttGuardar.Size = new Size(116, 30);
             buttGuardar.TabIndex = 38;
-            buttGuardar.Text = "Guardar";
+            buttGuardar.Text = "Limpiar";
             buttGuardar.UseVisualStyleBackColor = false;
             buttGuardar.Click += buttGuardar_Click;
             // 
@@ -97,7 +98,7 @@
             buttNuevo.FlatAppearance.MouseOverBackColor = Color.Navy;
             buttNuevo.FlatStyle = FlatStyle.Flat;
             buttNuevo.ForeColor = SystemColors.ControlLightLight;
-            buttNuevo.Location = new Point(128, 464);
+            buttNuevo.Location = new Point(224, 464);
             buttNuevo.Name = "buttNuevo";
             buttNuevo.Size = new Size(116, 30);
             buttNuevo.TabIndex = 37;
@@ -128,11 +129,12 @@
             labelCategoria.AutoSize = true;
             labelCategoria.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             labelCategoria.ForeColor = SystemColors.ControlLightLight;
-            labelCategoria.Location = new Point(178, 145);
+            labelCategoria.Location = new Point(140, 144);
             labelCategoria.Name = "labelCategoria";
-            labelCategoria.Size = new Size(71, 17);
+            labelCategoria.Size = new Size(135, 17);
             labelCategoria.TabIndex = 27;
-            labelCategoria.Text = "Categoría:";
+            labelCategoria.Text = "Código de Producto:";
+            labelCategoria.Click += labelCategoria_Click;
             // 
             // textCategoria
             // 
@@ -191,9 +193,10 @@
             // buttModificar
             // 
             buttModificar.BackColor = Color.FromArgb(0, 0, 64);
+            buttModificar.FlatAppearance.BorderSize = 0;
             buttModificar.FlatStyle = FlatStyle.Flat;
             buttModificar.ForeColor = SystemColors.ControlLightLight;
-            buttModificar.Location = new Point(711, 464);
+            buttModificar.Location = new Point(363, 464);
             buttModificar.Name = "buttModificar";
             buttModificar.Size = new Size(116, 30);
             buttModificar.TabIndex = 42;
@@ -206,7 +209,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(945, 473);
+            ClientSize = new Size(945, 526);
             Controls.Add(buttModificar);
             Controls.Add(textDescripcion);
             Controls.Add(buttBuscar);

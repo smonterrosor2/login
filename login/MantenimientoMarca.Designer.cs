@@ -49,7 +49,7 @@
             buttModificar.FlatAppearance.MouseOverBackColor = Color.Navy;
             buttModificar.FlatStyle = FlatStyle.Flat;
             buttModificar.ForeColor = SystemColors.ControlLightLight;
-            buttModificar.Location = new Point(720, 464);
+            buttModificar.Location = new Point(363, 464);
             buttModificar.Name = "buttModificar";
             buttModificar.Size = new Size(116, 30);
             buttModificar.TabIndex = 52;
@@ -62,10 +62,10 @@
             buttEliminar.BackColor = Color.FromArgb(0, 0, 64);
             buttEliminar.FlatAppearance.BorderSize = 0;
             buttEliminar.FlatAppearance.MouseDownBackColor = Color.FromArgb(0, 0, 64);
-            buttEliminar.FlatAppearance.MouseOverBackColor = Color.Navy;
+            buttEliminar.FlatAppearance.MouseOverBackColor = Color.DarkRed;
             buttEliminar.FlatStyle = FlatStyle.Flat;
             buttEliminar.ForeColor = SystemColors.ControlLightLight;
-            buttEliminar.Location = new Point(529, 464);
+            buttEliminar.Location = new Point(635, 464);
             buttEliminar.Name = "buttEliminar";
             buttEliminar.Size = new Size(116, 30);
             buttEliminar.TabIndex = 51;
@@ -81,11 +81,11 @@
             buttGuardar.FlatAppearance.MouseOverBackColor = Color.Navy;
             buttGuardar.FlatStyle = FlatStyle.Flat;
             buttGuardar.ForeColor = SystemColors.ControlLightLight;
-            buttGuardar.Location = new Point(322, 464);
+            buttGuardar.Location = new Point(499, 464);
             buttGuardar.Name = "buttGuardar";
             buttGuardar.Size = new Size(116, 30);
             buttGuardar.TabIndex = 50;
-            buttGuardar.Text = "Guardar";
+            buttGuardar.Text = "Limpiar";
             buttGuardar.UseVisualStyleBackColor = false;
             buttGuardar.Click += buttGuardar_Click;
             // 
@@ -97,7 +97,7 @@
             buttNuevo.FlatAppearance.MouseOverBackColor = Color.Navy;
             buttNuevo.FlatStyle = FlatStyle.Flat;
             buttNuevo.ForeColor = SystemColors.ControlLightLight;
-            buttNuevo.Location = new Point(129, 464);
+            buttNuevo.Location = new Point(224, 464);
             buttNuevo.Name = "buttNuevo";
             buttNuevo.Size = new Size(116, 30);
             buttNuevo.TabIndex = 49;
@@ -163,11 +163,12 @@
             // buttBuscar
             // 
             buttBuscar.BackColor = Color.FromArgb(0, 0, 64);
+            buttBuscar.FlatAppearance.BorderSize = 0;
             buttBuscar.FlatStyle = FlatStyle.Flat;
             buttBuscar.ForeColor = SystemColors.ControlLightLight;
-            buttBuscar.Location = new Point(685, 140);
+            buttBuscar.Location = new Point(685, 143);
             buttBuscar.Name = "buttBuscar";
-            buttBuscar.Size = new Size(66, 30);
+            buttBuscar.Size = new Size(66, 25);
             buttBuscar.TabIndex = 59;
             buttBuscar.Text = "Buscar";
             buttBuscar.UseVisualStyleBackColor = false;
