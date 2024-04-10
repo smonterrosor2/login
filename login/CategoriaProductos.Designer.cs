@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            buttModificar = new Button();
+            buttBuscar = new Button();
             buttEliminar = new Button();
             buttGuardar = new Button();
             buttNuevo = new Button();
@@ -41,36 +41,38 @@
             label1 = new Label();
             labelDescripcion = new Label();
             textDescripcion = new TextBox();
+            buttModificar = new Button();
             SuspendLayout();
             // 
-            // buttModificar
+            // buttBuscar
             // 
-            buttModificar.BackColor = Color.FromArgb(0, 0, 64);
-            buttModificar.FlatStyle = FlatStyle.Flat;
-            buttModificar.ForeColor = SystemColors.ControlLightLight;
-            buttModificar.Location = new Point(1027, 774);
-            buttModificar.Margin = new Padding(4, 5, 4, 5);
-            buttModificar.Name = "buttModificar";
-            buttModificar.Size = new Size(166, 50);
-            buttModificar.TabIndex = 40;
-            buttModificar.Text = "Modificar";
-            buttModificar.UseVisualStyleBackColor = false;
+            buttBuscar.BackColor = Color.FromArgb(0, 0, 64);
+            buttBuscar.FlatAppearance.BorderSize = 0;
+            buttBuscar.FlatStyle = FlatStyle.Flat;
+            buttBuscar.ForeColor = SystemColors.ControlLightLight;
+            buttBuscar.Location = new Point(685, 141);
+            buttBuscar.Name = "buttBuscar";
+            buttBuscar.Size = new Size(66, 25);
+            buttBuscar.TabIndex = 40;
+            buttBuscar.Text = "Buscar";
+            buttBuscar.UseVisualStyleBackColor = false;
+            buttBuscar.Click += buttBuscar_Click;
             // 
             // buttEliminar
             // 
             buttEliminar.BackColor = Color.FromArgb(0, 0, 64);
             buttEliminar.FlatAppearance.BorderSize = 0;
             buttEliminar.FlatAppearance.MouseDownBackColor = Color.FromArgb(0, 0, 64);
-            buttEliminar.FlatAppearance.MouseOverBackColor = Color.Navy;
+            buttEliminar.FlatAppearance.MouseOverBackColor = Color.DarkRed;
             buttEliminar.FlatStyle = FlatStyle.Flat;
             buttEliminar.ForeColor = SystemColors.ControlLightLight;
-            buttEliminar.Location = new Point(755, 774);
-            buttEliminar.Margin = new Padding(4, 5, 4, 5);
+            buttEliminar.Location = new Point(635, 464);
             buttEliminar.Name = "buttEliminar";
-            buttEliminar.Size = new Size(166, 50);
+            buttEliminar.Size = new Size(116, 30);
             buttEliminar.TabIndex = 39;
             buttEliminar.Text = "Eliminar";
             buttEliminar.UseVisualStyleBackColor = false;
+            buttEliminar.Click += buttEliminar_Click;
             // 
             // buttGuardar
             // 
@@ -80,13 +82,13 @@
             buttGuardar.FlatAppearance.MouseOverBackColor = Color.Navy;
             buttGuardar.FlatStyle = FlatStyle.Flat;
             buttGuardar.ForeColor = SystemColors.ControlLightLight;
-            buttGuardar.Location = new Point(459, 774);
-            buttGuardar.Margin = new Padding(4, 5, 4, 5);
+            buttGuardar.Location = new Point(499, 464);
             buttGuardar.Name = "buttGuardar";
-            buttGuardar.Size = new Size(166, 50);
+            buttGuardar.Size = new Size(116, 30);
             buttGuardar.TabIndex = 38;
-            buttGuardar.Text = "Guardar";
+            buttGuardar.Text = "Limpiar";
             buttGuardar.UseVisualStyleBackColor = false;
+            buttGuardar.Click += buttGuardar_Click;
             // 
             // buttNuevo
             // 
@@ -96,20 +98,19 @@
             buttNuevo.FlatAppearance.MouseOverBackColor = Color.Navy;
             buttNuevo.FlatStyle = FlatStyle.Flat;
             buttNuevo.ForeColor = SystemColors.ControlLightLight;
-            buttNuevo.Location = new Point(183, 774);
-            buttNuevo.Margin = new Padding(4, 5, 4, 5);
+            buttNuevo.Location = new Point(224, 464);
             buttNuevo.Name = "buttNuevo";
-            buttNuevo.Size = new Size(166, 50);
+            buttNuevo.Size = new Size(116, 30);
             buttNuevo.TabIndex = 37;
             buttNuevo.Text = "Nuevo";
             buttNuevo.UseVisualStyleBackColor = false;
+            buttNuevo.Click += buttNuevo_Click;
             // 
             // textNombre
             // 
-            textNombre.Location = new Point(401, 354);
-            textNombre.Margin = new Padding(4, 5, 4, 5);
+            textNombre.Location = new Point(281, 212);
             textNombre.Name = "textNombre";
-            textNombre.Size = new Size(669, 31);
+            textNombre.Size = new Size(470, 23);
             textNombre.TabIndex = 31;
             // 
             // labelNombre
@@ -117,10 +118,9 @@
             labelNombre.AutoSize = true;
             labelNombre.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             labelNombre.ForeColor = SystemColors.ControlLightLight;
-            labelNombre.Location = new Point(254, 356);
-            labelNombre.Margin = new Padding(4, 0, 4, 0);
+            labelNombre.Location = new Point(178, 214);
             labelNombre.Name = "labelNombre";
-            labelNombre.Size = new Size(94, 28);
+            labelNombre.Size = new Size(62, 17);
             labelNombre.TabIndex = 30;
             labelNombre.Text = "Nombre:";
             // 
@@ -129,19 +129,18 @@
             labelCategoria.AutoSize = true;
             labelCategoria.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             labelCategoria.ForeColor = SystemColors.ControlLightLight;
-            labelCategoria.Location = new Point(254, 241);
-            labelCategoria.Margin = new Padding(4, 0, 4, 0);
+            labelCategoria.Location = new Point(140, 144);
             labelCategoria.Name = "labelCategoria";
-            labelCategoria.Size = new Size(108, 28);
+            labelCategoria.Size = new Size(135, 17);
             labelCategoria.TabIndex = 27;
-            labelCategoria.Text = "Categoría:";
+            labelCategoria.Text = "Código de Producto:";
+            labelCategoria.Click += labelCategoria_Click;
             // 
             // textCategoria
             // 
-            textCategoria.Location = new Point(401, 239);
-            textCategoria.Margin = new Padding(4, 5, 4, 5);
+            textCategoria.Location = new Point(281, 143);
             textCategoria.Name = "textCategoria";
-            textCategoria.Size = new Size(669, 31);
+            textCategoria.Size = new Size(395, 23);
             textCategoria.TabIndex = 26;
             // 
             // label3
@@ -149,10 +148,9 @@
             label3.AutoSize = true;
             label3.Font = new Font("Segoe Fluent Icons", 18F, FontStyle.Bold);
             label3.ForeColor = SystemColors.ButtonHighlight;
-            label3.Location = new Point(548, 88);
-            label3.Margin = new Padding(4, 0, 4, 0);
+            label3.Location = new Point(384, 53);
             label3.Name = "label3";
-            label3.Size = new Size(330, 36);
+            label3.Size = new Size(225, 24);
             label3.TabIndex = 25;
             label3.Text = "Categoría de Productos";
             label3.Click += label3_Click;
@@ -160,19 +158,17 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(557, 192);
-            label2.Margin = new Padding(4, 0, 4, 0);
+            label2.Location = new Point(390, 115);
             label2.Name = "label2";
-            label2.Size = new Size(0, 25);
+            label2.Size = new Size(0, 15);
             label2.TabIndex = 24;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(206, 76);
-            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.Location = new Point(144, 46);
             label1.Name = "label1";
-            label1.Size = new Size(0, 25);
+            label1.Size = new Size(0, 15);
             label1.TabIndex = 23;
             // 
             // labelDescripcion
@@ -180,30 +176,43 @@
             labelDescripcion.AutoSize = true;
             labelDescripcion.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             labelDescripcion.ForeColor = SystemColors.ControlLightLight;
-            labelDescripcion.Location = new Point(254, 474);
-            labelDescripcion.Margin = new Padding(4, 0, 4, 0);
+            labelDescripcion.Location = new Point(178, 284);
             labelDescripcion.Name = "labelDescripcion";
-            labelDescripcion.Size = new Size(128, 28);
+            labelDescripcion.Size = new Size(84, 17);
             labelDescripcion.TabIndex = 32;
             labelDescripcion.Text = "Descripción:";
             // 
             // textDescripcion
             // 
-            textDescripcion.Location = new Point(401, 471);
-            textDescripcion.Margin = new Padding(4, 5, 4, 5);
+            textDescripcion.Location = new Point(281, 283);
             textDescripcion.Multiline = true;
             textDescripcion.Name = "textDescripcion";
-            textDescripcion.Size = new Size(669, 147);
+            textDescripcion.Size = new Size(470, 90);
             textDescripcion.TabIndex = 41;
+            // 
+            // buttModificar
+            // 
+            buttModificar.BackColor = Color.FromArgb(0, 0, 64);
+            buttModificar.FlatAppearance.BorderSize = 0;
+            buttModificar.FlatStyle = FlatStyle.Flat;
+            buttModificar.ForeColor = SystemColors.ControlLightLight;
+            buttModificar.Location = new Point(363, 464);
+            buttModificar.Name = "buttModificar";
+            buttModificar.Size = new Size(116, 30);
+            buttModificar.TabIndex = 42;
+            buttModificar.Text = "Modificar";
+            buttModificar.UseVisualStyleBackColor = false;
+            buttModificar.Click += buttModificar_Click;
             // 
             // CategoriaProductos
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(1350, 1040);
-            Controls.Add(textDescripcion);
+            ClientSize = new Size(945, 526);
             Controls.Add(buttModificar);
+            Controls.Add(textDescripcion);
+            Controls.Add(buttBuscar);
             Controls.Add(buttEliminar);
             Controls.Add(buttGuardar);
             Controls.Add(buttNuevo);
@@ -216,6 +225,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(2);
             Name = "CategoriaProductos";
             Text = "CategoriaProductos";
             Load += CategoriaProductos_Load;
@@ -225,7 +235,7 @@
 
         #endregion
         private TextBox textDescripcion;
-        private Button buttModificar;
+        private Button buttBuscar;
         private Button buttEliminar;
         private Button buttGuardar;
         private Button buttNuevo;
@@ -237,5 +247,6 @@
         private Label label3;
         private Label label2;
         private Label label1;
+        private Button buttModificar;
     }
 }

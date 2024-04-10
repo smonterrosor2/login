@@ -1,8 +1,20 @@
 {
   "version": 2,
-  "dgSpecHash": "0+aUYUfa6pGxVNkk5IJ16S5acV6ZlAAxuLhcDdb1Npm2It1IjLsaT/j+wT9/GJtwaS8j4sgPre8NOnwTNb8vGg==",
+  "dgSpecHash": "iAtn6l8soaVJHjVrAsTHdjJ380iZQ1vDSaYCfiGrvVJOzg/WQEMGBP1aQKM8yv8yfhuRV503++DvkUQuGS6f9w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\astri.DESKTOP-KG4HH30\\source\\repos\\login\\login\\login.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\Kevin Esquivel\\source\\repos\\login\\login\\login.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Kevin Esquivel\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
+    "C:\\Users\\Kevin Esquivel\\.nuget\\packages\\oracle.manageddataaccess.core\\3.21.130\\oracle.manageddataaccess.core.3.21.130.nupkg.sha512",
+    "C:\\Users\\Kevin Esquivel\\.nuget\\packages\\system.configuration.configurationmanager\\6.0.0\\system.configuration.configurationmanager.6.0.0.nupkg.sha512",
+    "C:\\Users\\Kevin Esquivel\\.nuget\\packages\\system.diagnostics.performancecounter\\6.0.1\\system.diagnostics.performancecounter.6.0.1.nupkg.sha512",
+    "C:\\Users\\Kevin Esquivel\\.nuget\\packages\\system.directoryservices\\6.0.1\\system.directoryservices.6.0.1.nupkg.sha512",
+    "C:\\Users\\Kevin Esquivel\\.nuget\\packages\\system.directoryservices.protocols\\6.0.2\\system.directoryservices.protocols.6.0.2.nupkg.sha512",
+    "C:\\Users\\Kevin Esquivel\\.nuget\\packages\\system.drawing.common\\6.0.0\\system.drawing.common.6.0.0.nupkg.sha512",
+    "C:\\Users\\Kevin Esquivel\\.nuget\\packages\\system.security.accesscontrol\\6.0.0\\system.security.accesscontrol.6.0.0.nupkg.sha512",
+    "C:\\Users\\Kevin Esquivel\\.nuget\\packages\\system.security.cryptography.protecteddata\\6.0.0\\system.security.cryptography.protecteddata.6.0.0.nupkg.sha512",
+    "C:\\Users\\Kevin Esquivel\\.nuget\\packages\\system.security.permissions\\6.0.0\\system.security.permissions.6.0.0.nupkg.sha512",
+    "C:\\Users\\Kevin Esquivel\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512"
+  ],
   "logs": []
 }
