@@ -27,3 +27,7 @@ C:\Users\Kevin Esquivel\Source\Repos\login\login\obj\Debug\net8.0-windows7.0\ref
 C:\Users\Kevin Esquivel\Source\Repos\login\login\obj\Debug\net8.0-windows7.0\login.pdb
 C:\Users\Kevin Esquivel\Source\Repos\login\login\obj\Debug\net8.0-windows7.0\login.genruntimeconfig.cache
 C:\Users\Kevin Esquivel\Source\Repos\login\login\obj\Debug\net8.0-windows7.0\ref\login.dll
+C:\Users\Kevin Esquivel\source\repos\login\login\obj\Debug\net8.0-windows7.0\login.EntradaInventario.resources
+C:\Users\Kevin Esquivel\source\repos\login\login\obj\Debug\net8.0-windows7.0\login.ConfiguracionUsuarios.resources
+C:\Users\Kevin Esquivel\source\repos\login\login\obj\Debug\net8.0-windows7.0\login.SalidaInvenario.resources
+C:\Users\Kevin Esquivel\source\repos\login\login\obj\Debug\net8.0-windows7.0\login.ListaProductos.resources

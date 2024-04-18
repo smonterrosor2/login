@@ -88,13 +88,13 @@ namespace login
 
         private void btnEinventario_Click(object sender, EventArgs e)
         {
-            //se coloca el codigo del enlace a lo que corresponde
+            opencontenedorForm(new EntradaInventario());
             hideSubMenu();
         }
 
         private void btnSInventario_Click(object sender, EventArgs e)
         {
-            //se coloca el codigo del enlace a lo que corresponde
+            opencontenedorForm(new SalidaInvenario());
             hideSubMenu();
         }
         //boton principal REPORTES DE INVENTARIO
