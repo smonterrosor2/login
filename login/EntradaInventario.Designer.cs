@@ -77,6 +77,7 @@
             buttNuevo.TabIndex = 55;
             buttNuevo.Text = "Nuevo";
             buttNuevo.UseVisualStyleBackColor = false;
+            buttNuevo.Click += buttNuevo_Click;
             // 
             // buttEliminar
             // 
@@ -293,6 +294,7 @@
             textNoDoc.Name = "textNoDoc";
             textNoDoc.Size = new Size(152, 23);
             textNoDoc.TabIndex = 68;
+            textNoDoc.PreviewKeyDown += textNoDoc_PreviewKeyDown;
             // 
             // textTotal
             // 
@@ -363,7 +365,6 @@
             dataGridView1.BackgroundColor = SystemColors.ButtonHighlight;
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.ColumnHeadersVisible = false;
             dataGridView1.Location = new Point(100, 241);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersVisible = false;

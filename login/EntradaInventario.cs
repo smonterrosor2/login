@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Oracle.ManagedDataAccess.Client;
 using login.Datos;
+using System.Net.NetworkInformation;
 
 namespace login
 {
@@ -19,7 +20,7 @@ namespace login
             InitializeComponent();
             ConfigurarColumnasDataGridView();
             EstablecerFechaActual();
-            textCosto.Text = "8.00";
+            textCosto.Text = "0.00";
         }
 
         // Método que maneja el evento CodigoSeleccionado del formulario ListaProductos
@@ -38,8 +39,8 @@ namespace login
             dataGridView1.Columns.Add("Columna1", "Codigo");
             dataGridView1.Columns.Add("Columna2", "Descripcion");
             dataGridView1.Columns.Add("Columna3", "Cantidad");
-            dataGridView1.Columns.Add("Columna4", "CostoUnitario");
-            dataGridView1.Columns.Add("Columna5", "CostoTotal");
+            dataGridView1.Columns.Add("Columna4", "Costo Unitario");
+            dataGridView1.Columns.Add("Columna5", "Costo Total");
 
             // Configura las columnas para que se ajusten y ocupen el espacio disponible.
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -49,7 +50,7 @@ namespace login
         private void EstablecerFechaActual()
         {
             // Establece la fecha actual en el TextBox textFecha
-            textFecha.Text = DateTime.Now.ToString("dd/MM/yyyy");
+            textFecha.Text = DateTime.Now.ToString("dd/MM/yy");
         }
 
         private void EntradaInventario_Load(object sender, EventArgs e)
@@ -109,7 +110,7 @@ namespace login
         {
             CargarDatosProducto();
         }
-        
+
         private void CargarDatosProducto()
         {
             if (ConexionBD.Conex.State != ConnectionState.Open)
@@ -122,7 +123,35 @@ namespace login
 
             try
             {
-                string queryDetalle = "SELECT DESCRIPCION, INGRESO, EGRESO, COSTO FROM DETALLE_INVENTARIO WHERE COD_PRODUCTO = :codigo";
+                // Consultar la información del producto en la tabla PRODUCTOS
+                string queryProductos = "SELECT NOMBRE, PRESENTACION, PRECIO FROM PRODUCTOS WHERE COD_PRODUCTO = :codigo";
+                using (OracleCommand productosCommand = new OracleCommand(queryProductos, ConexionBD.Conex))
+                {
+                    productosCommand.Parameters.Add(new OracleParameter("codigo", codigo));
+                    using (OracleDataReader productosReader = productosCommand.ExecuteReader())
+                    {
+                        if (productosReader.Read())
+                        {
+                            string nombre = productosReader["NOMBRE"].ToString();
+                            string presentacion = productosReader["PRESENTACION"].ToString();
+                            decimal precio = Convert.ToDecimal(productosReader["PRECIO"]);
+
+                            // Mostrar nombre y presentación en textDescripcion
+                            textDescripcion.Text = $"{nombre} {presentacion}";
+
+                            // Asignar el precio al campo textCosto
+                            textCosto.Text = precio.ToString();
+                        }
+                        else
+                        {
+                            MessageBox.Show("El código de producto no existe.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return; // Salir del método si no se encuentra el producto en la tabla PRODUCTOS
+                        }
+                    }
+                }
+
+                // Consultar la existencia del producto en la tabla DETALLE_INVENTARIO
+                string queryDetalle = "SELECT SUM(INGRESO) AS TOTAL_INGRESO, SUM(EGRESO) AS TOTAL_EGRESO FROM DETALLE_INVENTARIO WHERE COD_PRODUCTO = :codigo GROUP BY COSTO";
                 using (OracleCommand command = new OracleCommand(queryDetalle, ConexionBD.Conex))
                 {
                     command.Parameters.Add(new OracleParameter("codigo", codigo));
@@ -130,40 +159,16 @@ namespace login
                     {
                         if (reader.Read())
                         {
-                            string descripcion = reader["DESCRIPCION"].ToString();
-                            decimal ingreso = Convert.ToDecimal(reader["INGRESO"]);
-                            decimal egreso = Convert.ToDecimal(reader["EGRESO"]);
-                            decimal costo = Convert.ToDecimal(reader["COSTO"]);
-                            decimal existencia = ingreso - egreso;
+                            decimal totalIngreso = Convert.ToDecimal(reader["TOTAL_INGRESO"]);
+                            decimal totalEgreso = Convert.ToDecimal(reader["TOTAL_EGRESO"]);
+                            decimal existencia = totalIngreso - totalEgreso;
 
-                            textDescripcion.Text = descripcion;
                             textExistencia.Text = existencia.ToString();
-                            textCosto.Text = costo.ToString();
                         }
                         else
                         {
-                            string queryProductos = "SELECT NOMBRE, PRESENTACION, PRECIO FROM PRODUCTOS WHERE COD_PRODUCTO = :codigo";
-                            using (OracleCommand productosCommand = new OracleCommand(queryProductos, ConexionBD.Conex))
-                            {
-                                productosCommand.Parameters.Add(new OracleParameter("codigo", codigo));
-                                using (OracleDataReader productosReader = productosCommand.ExecuteReader())
-                                {
-                                    if (productosReader.Read())
-                                    {
-                                        string nombre = productosReader["NOMBRE"].ToString();
-                                        string presentacion = productosReader["PRESENTACION"].ToString();
-                                        decimal precio = Convert.ToDecimal(productosReader["PRECIO"]);
-
-                                        textDescripcion.Text = $"{nombre} {presentacion}";
-                                        textExistencia.Text = "0";
-                                        textCosto.Text = precio.ToString();
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show("El código de producto no existe.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    }
-                                }
-                            }
+                            // Si no hay registros en DETALLE_INVENTARIO, se establece existencia como 0
+                            textExistencia.Text = "0";
                         }
                     }
                 }
@@ -173,7 +178,6 @@ namespace login
                 MessageBox.Show($"Error al buscar el producto: {ex.Message}");
             }
         }
-        
         private void textCantidad_TextChanged(object sender, EventArgs e)
         {
             decimal cantidad = 0;
@@ -260,6 +264,8 @@ namespace login
                 if (control is TextBox && control != textFecha && control != textNoDoc)
                 {
                     ((TextBox)control).Text = "";
+
+                    textCosto.Text = "0.00";
                 }
             }
 
@@ -292,6 +298,170 @@ namespace login
         private void textCosto_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void buttNuevo_Click(object sender, EventArgs e)
+        {
+            InsertarDatos();
+        }
+
+        public void InsertarDatos()
+        {
+            if (ConexionBD.Conex.State != ConnectionState.Open)
+            {
+                MessageBox.Show("La conexión a la base de datos no está abierta.");
+                return;
+            }
+
+            string empCodigo = textUsuario.Text;
+            bool usuarioExiste = ValidarUsuario(empCodigo);
+            if (!usuarioExiste)
+            {
+                MessageBox.Show("El código de usuario no existe en la tabla USUARIOS.");
+                return;
+            }
+
+            // Iniciar una transacción
+            OracleTransaction transaction = ConexionBD.Conex.BeginTransaction();
+
+            try
+            {
+                string tipoDocumento = "EI";
+                string fecha = textFecha.Text;
+                string noDocumento = textNoDoc.Text;
+
+                string queryInsertarInventario = "INSERT INTO INVENTARIO (NO_DOCUMENTO, TIPO_DOCUMENTO, FECHA) VALUES (:noDocumento, :tipoDocumento, TO_DATE(:fecha, 'DD/MM/YY'))";
+                using (OracleCommand command = new OracleCommand(queryInsertarInventario, ConexionBD.Conex))
+                {
+                    command.Parameters.Add(new OracleParameter("noDocumento", noDocumento));
+                    command.Parameters.Add(new OracleParameter("tipoDocumento", tipoDocumento));
+                    command.Parameters.Add(new OracleParameter("fecha", fecha));
+                    command.ExecuteNonQuery();
+                }
+
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    // Verificar si la fila es la última fila vacía
+                    if (row.IsNewRow)
+                        continue; // Saltar la iteración si es la última fila vacía
+
+                    string codProducto = row.Cells["Columna1"].Value.ToString();
+                    string descripcion = row.Cells["Columna2"].Value.ToString();
+                    decimal ingreso = Math.Truncate(Convert.ToDecimal(row.Cells["Columna3"].Value));
+                    decimal costo = Math.Truncate(Convert.ToDecimal(row.Cells["Columna4"].Value));
+                    decimal subtotal = Math.Truncate(Convert.ToDecimal(row.Cells["Columna5"].Value.ToString().Replace("Q. ", "")));
+
+
+                    string queryInsertarDetalle = "INSERT INTO DETALLE_INVENTARIO (COD_PRODUCTO, DESCRIPCION, COSTO, INGRESO, EGRESO, SUBTOTAL, EMP_CODIGO, OBSERVACION, NO_DOCUMENTO, TIPO_DOCUMENTO, LINEA) VALUES (:codProducto, :descripcion, :costo, :ingreso, 0, :subtotal, :empCodigo, :observacion, :noDocumento, 'EI', :linea)";
+                    using (OracleCommand detalleCommand = new OracleCommand(queryInsertarDetalle, ConexionBD.Conex))
+                    {
+                        detalleCommand.Parameters.Add(new OracleParameter("codProducto", codProducto));
+                        detalleCommand.Parameters.Add(new OracleParameter("descripcion", descripcion));
+                        detalleCommand.Parameters.Add(new OracleParameter("costo", costo));
+                        detalleCommand.Parameters.Add(new OracleParameter("ingreso", ingreso));
+                        detalleCommand.Parameters.Add(new OracleParameter("subtotal", subtotal));
+                        detalleCommand.Parameters.Add(new OracleParameter("empCodigo", empCodigo));
+                        detalleCommand.Parameters.Add(new OracleParameter("observacion", textObservacion.Text));
+                        detalleCommand.Parameters.Add(new OracleParameter("noDocumento", noDocumento));
+                        detalleCommand.Parameters.Add(new OracleParameter("linea", row.Index + 1));
+                        detalleCommand.ExecuteNonQuery();
+                    }
+                }
+
+                // Commit de la transacción si todo se ejecutó correctamente
+                transaction.Commit();
+                MessageBox.Show("Datos insertados correctamente en la base de datos.");
+                CargarDatos.CargarUltimoIDInventario(textNoDoc, ConexionBD.Conex);
+            }
+            catch (Exception ex)
+            {
+                // Rollback de la transacción en caso de error
+                transaction.Rollback();
+                //MessageBox.Show($"Error al insertar datos en la base de datos: {ex.Message}");
+            }
+        }
+
+        private bool ValidarUsuario(string empCodigo)
+        {
+            string query = "SELECT COUNT(*) FROM USUARIOS WHERE EMP_CODIGO = :empCodigo";
+            using (OracleCommand command = new OracleCommand(query, ConexionBD.Conex))
+            {
+                command.Parameters.Add(new OracleParameter("empCodigo", empCodigo));
+                int count = Convert.ToInt32(command.ExecuteScalar());
+                return count > 0;
+            }
+        }
+
+        private void textNoDoc_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                // Obtener el número de documento del TextBox
+                string noDocumento = textNoDoc.Text;
+
+                // Llamar al método para eliminar registros del inventario
+                EliminarRegistro(noDocumento);
+            }
+        }
+
+        private void EliminarRegistro(string noDocumento)
+        {
+            // Prepara la consulta SQL para eliminar los datos
+            string queryInventario = "DELETE FROM INVENTARIO WHERE NO_DOCUMENTO = :noDocumento";
+            string queryDetalle = "DELETE FROM DETALLE_INVENTARIO WHERE NO_DOCUMENTO = :noDocumento";
+
+            // Verifica si la conexión está abierta
+            if (ConexionBD.Conex.State != System.Data.ConnectionState.Open)
+            {
+                MessageBox.Show("La conexión a la base de datos no está abierta.");
+                return;
+            }
+
+            try
+            {
+
+                // Eliminar los registros de la tabla DETALLE_INVENTARIO asociados al NO_DOCUMENTO
+                using (OracleCommand commandDetalle = new OracleCommand(queryDetalle, ConexionBD.Conex))
+                {
+                    // Añade el parámetro para prevenir inyección SQL
+                    commandDetalle.Parameters.Add(new OracleParameter("noDocumento", noDocumento));
+
+                    // Ejecuta la consulta
+                    int resultDetalle = commandDetalle.ExecuteNonQuery();
+
+                    if (resultDetalle > 0)
+                    {
+                        MessageBox.Show("Registros de detalle de inventario eliminados correctamente.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontraron registros de detalle de inventario para eliminar. Verifica el número de documento proporcionado.");
+                    }
+                }
+
+                // Eliminar el registro de la tabla INVENTARIO
+                using (OracleCommand commandInventario = new OracleCommand(queryInventario, ConexionBD.Conex))
+                {
+                    // Añade el parámetro para prevenir inyección SQL
+                    commandInventario.Parameters.Add(new OracleParameter("noDocumento", noDocumento));
+
+                    // Ejecuta la consulta
+                    int resultInventario = commandInventario.ExecuteNonQuery();
+
+                    if (resultInventario > 0)
+                    {
+                        MessageBox.Show("Registro de inventario eliminado correctamente.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontró el registro de inventario para eliminar. Verifica el número de documento proporcionado.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al eliminar los registros: {ex.Message}");
+            }
         }
     }
 }
