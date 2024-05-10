@@ -86,6 +86,7 @@
             textCodigo.Name = "textCodigo";
             textCodigo.Size = new Size(206, 23);
             textCodigo.TabIndex = 3;
+            textCodigo.TextChanged += textCodigo_TextChanged;
             // 
             // label4
             // 
@@ -170,6 +171,7 @@
             comboCategoria.Name = "comboCategoria";
             comboCategoria.Size = new Size(280, 23);
             comboCategoria.TabIndex = 13;
+            comboCategoria.SelectedIndexChanged += comboCategoria_SelectedIndexChanged;
             // 
             // textPrecio
             // 

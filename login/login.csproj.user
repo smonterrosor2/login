@@ -4,7 +4,19 @@
     <Compile Update="CategoriaProductos.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="ConfiguracionUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Entidades\Lista_Productos_salida.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="EntradaInventario.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ListaProductos.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="MantenimientoMarca.cs">
@@ -16,5 +28,16 @@
     <Compile Update="menu.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="SalidaInvenario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="DataSet1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Update="DataSet2.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
 </Project>

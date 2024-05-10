@@ -19,6 +19,7 @@ namespace login
 {
     public partial class Form1 : Form
     {
+
         public Form1()
         {
             InitializeComponent();
@@ -112,57 +113,25 @@ namespace login
         //OracleConnection conexion = new OracleConnection("Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521)))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=orcl)));User Id=InventarioDB;Password=root;");
         private void btnlogin_Click(object sender, EventArgs e)
         {
-            /*OracleConnection ora = new OracleConnection("Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521)))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=orcl)));User Id=InventarioDB;Password=root;");
-            ora.Open();
-            MessageBox.Show("abierto");
-            ora.Close();*/
-            /*if (textuser.Text == "admin" && textpass.Text == "123")
-            {
-                menu menu = new menu();
-                this.Hide();
-                menu.Show();
-            }
-
-            else
-            {
-                MessageBox.Show("Usuario y Contraseña Incorrectos");
-
-            }*/
-
-            /*conexion.Open();
-            OracleCommand comando = new OracleCommand("SELECT * FROM USUARIOS WHERE NOMBRES = :usuario AND APELLIDOS = :contra", conexion);
-            //comando.Parameters.AddWithValue(":usuario", textuser.Text);
-            //comando.Parameters.AddWithValue(":contra", textpass.Text);
-            comando.Parameters.Add(":usuario", OracleDbType.Varchar2).Value = textuser.Text;
-            comando.Parameters.Add(":contra", OracleDbType.Varchar2).Value = textpass.Text;
-
-            OracleDataReader lector = comando.ExecuteReader();
-
-            if (lector.Read())
-            {
-                /*menu formulario = new menu();
-                conexion.Close();
-                formulario.Show();*/
-
-            /*  menu menu = new menu();
-              this.Hide();
-              menu.Show(); 
-            MessageBox.Show("Usuario y Contraseña Incorrectos");
-            conexion.Close();
-        }*/
 
             // Obtiene los valores ingresados
             string usuarioIngresado = textuser.Text;
-            string contraseñaIngresada = textpass.Text;
+            string contraseñaIngresada = Convert.ToBase64String(Encoding.UTF8.GetBytes(textpass.Text));
 
-            // Llama al método para comprobar las credenciales
+
+
+            // Llamada al método para comprobar las credenciales
             if (ComprobarCredenciales(usuarioIngresado, contraseñaIngresada))
             {
-                // MessageBox.Show("Inicio de sesión exitoso.");
                 menu menu = new menu();
                 this.Hide();
                 menu.Show();
-                // Procede con la lógica de inicio de sesión exitoso
+
+
+
+                int codigoEmpleado = obtenerCodigoUsuario(textuser.Text);
+                EnviarUsuario.SetUsuario(codigoEmpleado);
+
             }
             else
             {
@@ -198,12 +167,52 @@ namespace login
                 return false;
             }
         }
+       
 
-        /*private void Listado_us()
+        private void textuser_TextChanged(object sender, EventArgs e)
         {
-            D_Usuarios Datos = new D_Usuarios();
-            cmbUsuarios.DataSource = Datos.listado_us();
-            cmbUsuarios.ValueMember = "NOMBRES";
-        }*/
+
+        }
+
+        public int obtenerCodigoUsuario(string nombreUsuario)
+        {
+            int codigoEmpleado = -1; // Valor predeterminado si no se encuentra
+
+            try
+            {
+                if (ConexionBD.Conex.State != ConnectionState.Open)
+                {
+                    MessageBox.Show("La conexión a la base de datos no está abierta.");
+                    return codigoEmpleado;
+                }
+
+                string query = "SELECT EMP_CODIGO FROM USUARIOS WHERE NOMBRES = :nombreUsuario";
+
+                using (OracleCommand command = new OracleCommand(query, ConexionBD.Conex))
+                {
+                    // Agregar el parámetro para el nombre del usuario
+                    command.Parameters.Add(new OracleParameter("nombreUsuario", nombreUsuario));
+
+                    object result = command.ExecuteScalar();
+
+                    if (result != null)
+                    {
+                        codigoEmpleado = Convert.ToInt32(result);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejar errores
+                MessageBox.Show($"Error al obtener el código de usuario: {ex.Message}");
+            }
+
+            return codigoEmpleado;
+        }
+
+        private void textpass_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

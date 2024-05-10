@@ -99,6 +99,7 @@
             textuser.Size = new Size(387, 15);
             textuser.TabIndex = 1;
             textuser.Text = "USUARIO";
+            textuser.TextChanged += textuser_TextChanged;
             textuser.Enter += textuser_Enter;
             textuser.Leave += textuser_Leave;
             // 
@@ -113,6 +114,7 @@
             textpass.Size = new Size(387, 15);
             textpass.TabIndex = 2;
             textpass.Text = "CONTRASEÑA";
+            textpass.TextChanged += textpass_TextChanged;
             textpass.Enter += textpass_Enter;
             textpass.Leave += textpass_Leave;
             // 
