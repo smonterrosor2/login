@@ -109,9 +109,11 @@
             // textNombre
             // 
             textNombre.Location = new Point(281, 212);
+            textNombre.MaxLength = 25;
             textNombre.Name = "textNombre";
             textNombre.Size = new Size(470, 23);
             textNombre.TabIndex = 31;
+            textNombre.KeyPress += textNombre_KeyPress;
             // 
             // labelNombre
             // 
@@ -139,9 +141,11 @@
             // textCategoria
             // 
             textCategoria.Location = new Point(281, 143);
+            textCategoria.MaxLength = 38;
             textCategoria.Name = "textCategoria";
             textCategoria.Size = new Size(395, 23);
             textCategoria.TabIndex = 26;
+            textCategoria.KeyPress += textCategoria_KeyPress;
             // 
             // label3
             // 
@@ -185,10 +189,12 @@
             // textDescripcion
             // 
             textDescripcion.Location = new Point(281, 283);
+            textDescripcion.MaxLength = 25;
             textDescripcion.Multiline = true;
             textDescripcion.Name = "textDescripcion";
             textDescripcion.Size = new Size(470, 90);
             textDescripcion.TabIndex = 41;
+            textDescripcion.KeyPress += textDescripcion_KeyPress;
             // 
             // buttModificar
             // 

@@ -108,9 +108,11 @@
             // textNombre
             // 
             textNombre.Location = new Point(281, 214);
+            textNombre.MaxLength = 25;
             textNombre.Name = "textNombre";
             textNombre.Size = new Size(470, 23);
             textNombre.TabIndex = 58;
+            textNombre.KeyPress += textNombre_KeyPress;
             // 
             // labelNombre
             // 
@@ -137,9 +139,11 @@
             // textCodigo
             // 
             textCodigo.Location = new Point(281, 145);
+            textCodigo.MaxLength = 38;
             textCodigo.Name = "textCodigo";
             textCodigo.Size = new Size(395, 23);
             textCodigo.TabIndex = 55;
+            textCodigo.KeyPress += textCodigo_KeyPress;
             // 
             // labelTitulo
             // 

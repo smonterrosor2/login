@@ -3,28 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\Kevin Esquivel\\source\\repos\\login\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8F039901-AE61-4265-BE0C-94486B1F3D98}|login\\login.csproj|c:\\users\\kevin esquivel\\source\\repos\\login\\login\\entradainventario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{8F039901-AE61-4265-BE0C-94486B1F3D98}|login\\login.csproj|C:\\Users\\Kevin Esquivel\\source\\repos\\login\\login\\entradainventario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8F039901-AE61-4265-BE0C-94486B1F3D98}|login\\login.csproj|solutionrelative:login\\entradainventario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8F039901-AE61-4265-BE0C-94486B1F3D98}|login\\login.csproj|c:\\users\\kevin esquivel\\source\\repos\\login\\login\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8F039901-AE61-4265-BE0C-94486B1F3D98}|login\\login.csproj|solutionrelative:login\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8F039901-AE61-4265-BE0C-94486B1F3D98}|login\\login.csproj|c:\\users\\kevin esquivel\\source\\repos\\login\\login\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{8F039901-AE61-4265-BE0C-94486B1F3D98}|login\\login.csproj|solutionrelative:login\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8F039901-AE61-4265-BE0C-94486B1F3D98}|login\\login.csproj|c:\\users\\kevin esquivel\\source\\repos\\login\\login\\login.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{8F039901-AE61-4265-BE0C-94486B1F3D98}|login\\login.csproj|solutionrelative:login\\login.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8F039901-AE61-4265-BE0C-94486B1F3D98}|login\\login.csproj|C:\\Users\\Kevin Esquivel\\source\\repos\\login\\login\\salidainvenario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8F039901-AE61-4265-BE0C-94486B1F3D98}|login\\login.csproj|solutionrelative:login\\salidainvenario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8F039901-AE61-4265-BE0C-94486B1F3D98}|login\\login.csproj|C:\\Users\\Kevin Esquivel\\source\\repos\\login\\login\\salidainvenario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{8F039901-AE61-4265-BE0C-94486B1F3D98}|login\\login.csproj|solutionrelative:login\\salidainvenario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8F039901-AE61-4265-BE0C-94486B1F3D98}|login\\login.csproj|C:\\Users\\Kevin Esquivel\\source\\repos\\login\\login\\entradainventario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{8F039901-AE61-4265-BE0C-94486B1F3D98}|login\\login.csproj|solutionrelative:login\\entradainventario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8F039901-AE61-4265-BE0C-94486B1F3D98}|login\\login.csproj|c:\\users\\kevin esquivel\\source\\repos\\login\\login\\categoriaproductos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8F039901-AE61-4265-BE0C-94486B1F3D98}|login\\login.csproj|solutionrelative:login\\categoriaproductos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8F039901-AE61-4265-BE0C-94486B1F3D98}|login\\login.csproj|c:\\users\\kevin esquivel\\source\\repos\\login\\login\\categoriaproductos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{8F039901-AE61-4265-BE0C-94486B1F3D98}|login\\login.csproj|solutionrelative:login\\categoriaproductos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8F039901-AE61-4265-BE0C-94486B1F3D98}|login\\login.csproj|c:\\users\\kevin esquivel\\source\\repos\\login\\login\\datos\\conexionbd.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8F039901-AE61-4265-BE0C-94486B1F3D98}|login\\login.csproj|solutionrelative:login\\datos\\conexionbd.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8F039901-AE61-4265-BE0C-94486B1F3D98}|login\\login.csproj|C:\\Users\\Kevin Esquivel\\source\\repos\\login\\login\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{8F039901-AE61-4265-BE0C-94486B1F3D98}|login\\login.csproj|solutionrelative:login\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,40 +50,40 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "CategoriaProductos.cs",
-              "DocumentMoniker": "C:\\Users\\Kevin Esquivel\\source\\repos\\login\\login\\CategoriaProductos.cs",
-              "RelativeDocumentMoniker": "login\\CategoriaProductos.cs",
-              "ToolTip": "C:\\Users\\Kevin Esquivel\\source\\repos\\login\\login\\CategoriaProductos.cs",
-              "RelativeToolTip": "login\\CategoriaProductos.cs",
-              "ViewState": "AQIAANUAAAAAAAAAAAAAAOgAAAAJAAAA",
+              "DocumentIndex": 1,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\Kevin Esquivel\\source\\repos\\login\\login\\Form1.cs",
+              "RelativeDocumentMoniker": "login\\Form1.cs",
+              "ToolTip": "C:\\Users\\Kevin Esquivel\\source\\repos\\login\\login\\Form1.cs",
+              "RelativeToolTip": "login\\Form1.cs",
+              "ViewState": "AQIAAIkAAAAAAAAAAAArwJEAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-18T05:39:23.183Z",
+              "WhenOpened": "2024-05-09T05:15:31.076Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "CategoriaProductos.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\Kevin Esquivel\\source\\repos\\login\\login\\CategoriaProductos.cs",
-              "RelativeDocumentMoniker": "login\\CategoriaProductos.cs",
-              "ToolTip": "C:\\Users\\Kevin Esquivel\\source\\repos\\login\\login\\CategoriaProductos.cs [Dise\u00F1o]",
-              "RelativeToolTip": "login\\CategoriaProductos.cs [Dise\u00F1o]",
+              "DocumentIndex": 2,
+              "Title": "Form1.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Kevin Esquivel\\source\\repos\\login\\login\\Form1.cs",
+              "RelativeDocumentMoniker": "login\\Form1.cs",
+              "ToolTip": "C:\\Users\\Kevin Esquivel\\source\\repos\\login\\login\\Form1.cs [Dise\u00F1o]",
+              "RelativeToolTip": "login\\Form1.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-18T05:39:18.459Z",
+              "WhenOpened": "2024-05-09T05:14:55.25Z",
               "EditorCaption": " [Dise\u00F1o]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ConexionBD.cs",
-              "DocumentMoniker": "C:\\Users\\Kevin Esquivel\\source\\repos\\login\\login\\Datos\\ConexionBD.cs",
-              "RelativeDocumentMoniker": "login\\Datos\\ConexionBD.cs",
-              "ToolTip": "C:\\Users\\Kevin Esquivel\\source\\repos\\login\\login\\Datos\\ConexionBD.cs",
-              "RelativeToolTip": "login\\Datos\\ConexionBD.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-18T05:34:52.801Z",
+              "DocumentIndex": 3,
+              "Title": "login.csproj",
+              "DocumentMoniker": "C:\\Users\\Kevin Esquivel\\source\\repos\\login\\login\\login.csproj",
+              "RelativeDocumentMoniker": "login\\login.csproj",
+              "ToolTip": "C:\\Users\\Kevin Esquivel\\source\\repos\\login\\login\\login.csproj",
+              "RelativeToolTip": "login\\login.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACgAAAA5AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-05-09T04:53:06.893Z",
               "EditorCaption": ""
             },
             {
@@ -90,33 +94,46 @@
               "RelativeDocumentMoniker": "login\\EntradaInventario.cs",
               "ToolTip": "C:\\Users\\Kevin Esquivel\\source\\repos\\login\\login\\EntradaInventario.cs",
               "RelativeToolTip": "login\\EntradaInventario.cs",
-              "ViewState": "AQIAAJ0BAAAAAAAAAAAAAKQBAAANAAAA",
+              "ViewState": "AQIAAG8AAAAAAAAAAAAAAHcAAAAqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-17T00:45:51.979Z",
+              "WhenOpened": "2024-05-09T02:42:42.551Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "SalidaInvenario.cs",
+              "DocumentMoniker": "C:\\Users\\Kevin Esquivel\\source\\repos\\login\\login\\SalidaInvenario.cs",
+              "RelativeDocumentMoniker": "login\\SalidaInvenario.cs",
+              "ToolTip": "C:\\Users\\Kevin Esquivel\\source\\repos\\login\\login\\SalidaInvenario.cs",
+              "RelativeToolTip": "login\\SalidaInvenario.cs",
+              "ViewState": "AQIAAAMBAAAAAAAAAAAwwA4BAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-09T02:39:41.266Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "menu.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\Kevin Esquivel\\source\\repos\\login\\login\\menu.cs",
-              "RelativeDocumentMoniker": "login\\menu.cs",
-              "ToolTip": "C:\\Users\\Kevin Esquivel\\source\\repos\\login\\login\\menu.cs [Dise\u00F1o]",
-              "RelativeToolTip": "login\\menu.cs [Dise\u00F1o]",
+              "Title": "SalidaInvenario.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Kevin Esquivel\\source\\repos\\login\\login\\SalidaInvenario.cs",
+              "RelativeDocumentMoniker": "login\\SalidaInvenario.cs",
+              "ToolTip": "C:\\Users\\Kevin Esquivel\\source\\repos\\login\\login\\SalidaInvenario.cs [Dise\u00F1o]",
+              "RelativeToolTip": "login\\SalidaInvenario.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-17T00:40:17.968Z",
+              "WhenOpened": "2024-05-09T02:37:08.253Z",
               "EditorCaption": " [Dise\u00F1o]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
               "Title": "EntradaInventario.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\Kevin Esquivel\\source\\repos\\login\\login\\EntradaInventario.cs",
               "RelativeDocumentMoniker": "login\\EntradaInventario.cs",
               "ToolTip": "C:\\Users\\Kevin Esquivel\\source\\repos\\login\\login\\EntradaInventario.cs [Dise\u00F1o]",
               "RelativeToolTip": "login\\EntradaInventario.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-16T04:03:14.873Z",
+              "WhenOpened": "2024-05-08T11:36:58.606Z",
               "EditorCaption": " [Dise\u00F1o]"
             }
           ]

@@ -79,7 +79,11 @@ namespace login
 
         private void buttInsertar_Click(object sender, EventArgs e)
         {
-            ValidarCantidad();
+            if (!ValidarCantidad())
+            {
+                // Si la validación falla, salir del método
+                return;
+            }
 
             // Obtener los valores de los TextBox
             string codigo = textCodigo.Text;
@@ -97,13 +101,15 @@ namespace login
         }
 
         // Método para validar el valor ingresado en el campo Cantidad
-        private void ValidarCantidad()
+        private bool ValidarCantidad()
         {
             // Verifica si el campo no está vacío y si el número es mayor a cero
             if (string.IsNullOrEmpty(textCantidad.Text) || int.Parse(textCantidad.Text) <= 0)
             {
                 MessageBox.Show("Favor de ingresar una cantidad mayor a cero", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
             }
+            return true;
         }
 
         private void buttBuscar_Click(object sender, EventArgs e)
@@ -180,21 +186,42 @@ namespace login
         }
         private void textCantidad_TextChanged(object sender, EventArgs e)
         {
-            decimal cantidad = 0;
 
-            if (!string.IsNullOrEmpty(textCantidad.Text))
+            string textoNumerico = LimpiarTextoNumerico(textCantidad);
+
+            // Verificar si el texto es un número válido
+            if (!string.IsNullOrEmpty(textoNumerico) && decimal.TryParse(textoNumerico, out decimal cantidad))
             {
-                cantidad = decimal.Parse(textCantidad.Text);
+                // Obtener el valor de textCosto (asumiendo que ya ha sido validado)
+                decimal costo = decimal.Parse(textCosto.Text);
+
+                // Calcular el subtotal multiplicando la cantidad por el costo
+                decimal subtotal = cantidad * costo;
+
+                // Formatear el subtotal con el prefijo "Q. " y alineado a la derecha
+                textSubTotal.Text = string.Format("Q. {0,10}", subtotal.ToString("#,##0.00"));
+            }
+            else
+            {
+                // Si el texto no es un número válido o está vacío, limpiar el campo subtotal
+                textSubTotal.Text = "";
+            }
+        }
+
+        private string LimpiarTextoNumerico(TextBox textBox)
+        {
+            // Eliminar cualquier carácter no numérico del texto
+            string textoNumerico = new string(textBox.Text.Where(char.IsDigit).ToArray());
+
+            // Actualizar el texto del TextBox solo si ha cambiado
+            if (textBox.Text != textoNumerico)
+            {
+                textBox.Text = textoNumerico;
+                textBox.SelectionStart = textBox.Text.Length;
             }
 
-            // Obtener el valor de textCosto (asumiendo que ya ha sido validado)
-            decimal costo = decimal.Parse(textCosto.Text);
-
-            // Calcular el subtotal multiplicando la cantidad por el costo
-            decimal subtotal = cantidad * costo;
-
-            // Formatear el subtotal con el prefijo "Q. " y alineado a la derecha
-            textSubTotal.Text = string.Format("Q. {0,10}", subtotal.ToString("#,##0.00"));
+            // Devolver el texto limpio
+            return textoNumerico;
         }
 
         private void LimpiarTextBoxes()
@@ -302,7 +329,16 @@ namespace login
 
         private void buttNuevo_Click(object sender, EventArgs e)
         {
-            InsertarDatos();
+            // Confirmar si se desea realizar la eliminación
+            DialogResult result = MessageBox.Show("¿Seguro que desea insertar los registros indicados?", "Confirmar inserción", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                InsertarDatos();
+                LimpiarControles();
+                CargarDatos.CargarUltimoIDInventario(textNoDoc, ConexionBD.Conex);
+                EstablecerFechaActual();
+            }
         }
 
         public void InsertarDatos()
@@ -313,13 +349,8 @@ namespace login
                 return;
             }
 
-            string empCodigo = textUsuario.Text;
-            bool usuarioExiste = ValidarUsuario(empCodigo);
-            if (!usuarioExiste)
-            {
-                MessageBox.Show("El código de usuario no existe en la tabla USUARIOS.");
-                return;
-            }
+            int usuario = EnviarUsuario.GetUsuario();
+            string empCodigo = usuario.ToString();
 
             // Iniciar una transacción
             OracleTransaction transaction = ConexionBD.Conex.BeginTransaction();
@@ -377,7 +408,7 @@ namespace login
             {
                 // Rollback de la transacción en caso de error
                 transaction.Rollback();
-                //MessageBox.Show($"Error al insertar datos en la base de datos: {ex.Message}");
+                MessageBox.Show($"Error al insertar datos en la base de datos: {ex.Message}");
             }
         }
 
@@ -394,13 +425,76 @@ namespace login
 
         private void textNoDoc_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
-            {
-                // Obtener el número de documento del TextBox
-                string noDocumento = textNoDoc.Text;
 
-                // Llamar al método para eliminar registros del inventario
-                EliminarRegistro(noDocumento);
+        }
+
+        private void BuscarParaEliminar(string noDocumento)
+        {
+            // Prepara la consulta SQL para buscar en la tabla DETALLE_INVENTARIO
+            string queryDetalle = "SELECT COD_PRODUCTO, DESCRIPCION, INGRESO, COSTO, SUBTOTAL FROM DETALLE_INVENTARIO WHERE NO_DOCUMENTO = :noDocumento";
+
+            // Prepara la consulta SQL para obtener la observación de la tabla DETALLE_INVENTARIO
+            string queryObservacion = "SELECT OBSERVACION FROM DETALLE_INVENTARIO WHERE NO_DOCUMENTO = :noDocumento AND ROWNUM = 1";
+
+            // Prepara la consulta SQL para obtener la fecha de la tabla INVENTARIO
+            string queryFecha = "SELECT FECHA FROM INVENTARIO WHERE NO_DOCUMENTO = :noDocumento";
+
+            // Verifica si la conexión está abierta
+            if (ConexionBD.Conex.State != ConnectionState.Open)
+            {
+                MessageBox.Show("La conexión a la base de datos no está abierta.");
+                return;
+            }
+
+            try
+            {
+                using (OracleCommand commandDetalle = new OracleCommand(queryDetalle, ConexionBD.Conex))
+                {
+                    commandDetalle.Parameters.Add(new OracleParameter("noDocumento", noDocumento));
+                    using (OracleDataReader readerDetalle = commandDetalle.ExecuteReader())
+                    {
+                        // Limpiar las filas existentes del DataGridView
+                        dataGridView1.Rows.Clear();
+
+                        // Iterar sobre los resultados y agregarlos al DataGridView
+                        while (readerDetalle.Read())
+                        {
+                            object[] rowData = new object[5]; // 5 columnas
+                            rowData[0] = readerDetalle["COD_PRODUCTO"];
+                            rowData[1] = readerDetalle["DESCRIPCION"];
+                            rowData[2] = readerDetalle["INGRESO"];
+                            rowData[3] = readerDetalle["COSTO"];
+                            rowData[4] = readerDetalle["SUBTOTAL"];
+                            dataGridView1.Rows.Add(rowData);
+                        }
+                    }
+                }
+
+                // Obtener la observación de DETALLE_INVENTARIO
+                using (OracleCommand commandObservacion = new OracleCommand(queryObservacion, ConexionBD.Conex))
+                {
+                    commandObservacion.Parameters.Add(new OracleParameter("noDocumento", noDocumento));
+                    object observacion = commandObservacion.ExecuteScalar();
+                    if (observacion != null)
+                    {
+                        textObservacion.Text = observacion.ToString();
+                    }
+                }
+
+                // Obtener la fecha de INVENTARIO
+                using (OracleCommand commandFecha = new OracleCommand(queryFecha, ConexionBD.Conex))
+                {
+                    commandFecha.Parameters.Add(new OracleParameter("noDocumento", noDocumento));
+                    object fecha = commandFecha.ExecuteScalar();
+                    if (fecha != null)
+                    {
+                        textFecha.Text = fecha.ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al buscar en la base de datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -417,6 +511,9 @@ namespace login
                 return;
             }
 
+            // Iniciar una transacción
+            OracleTransaction transaction = ConexionBD.Conex.BeginTransaction();
+
             try
             {
 
@@ -431,7 +528,7 @@ namespace login
 
                     if (resultDetalle > 0)
                     {
-                        MessageBox.Show("Registros de detalle de inventario eliminados correctamente.");
+                        //MessageBox.Show("Registros de detalle de inventario eliminados correctamente.");
                     }
                     else
                     {
@@ -450,7 +547,9 @@ namespace login
 
                     if (resultInventario > 0)
                     {
-                        MessageBox.Show("Registro de inventario eliminado correctamente.");
+                        // Commit de la transacción si todo se ejecutó correctamente
+                        transaction.Commit();
+                        MessageBox.Show("Registro eliminado correctamente.");
                     }
                     else
                     {
@@ -460,7 +559,82 @@ namespace login
             }
             catch (Exception ex)
             {
+                // Rollback de la transacción en caso de error
+                transaction.Rollback();
                 MessageBox.Show($"Error al eliminar los registros: {ex.Message}");
+            }
+        }
+
+        private void buttEliminar_Click(object sender, EventArgs e)
+        {
+
+            // Obtener el número de documento del TextBox
+            string noDocumento = textBuscarDoc.Text;
+
+            // Confirmar si se desea realizar la eliminación
+            DialogResult result = MessageBox.Show("¿Seguro que desea eliminar los registros asociados al documento?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                // Llamar al método para eliminar registros del inventario
+                EliminarRegistro(noDocumento);
+                LimpiarControles();
+                CargarDatos.CargarUltimoIDInventario(textNoDoc, ConexionBD.Conex);
+                EstablecerFechaActual();
+            }
+        }
+
+        private void textCodigo_TextChanged(object sender, EventArgs e)
+        {
+            LimpiarTextoNumerico(textCodigo);
+        }
+
+        private void textCosto_TextAlignChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textCodigo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textUsuario_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttBuscarDoc_Click(object sender, EventArgs e)
+        {
+            string noDocumento = textBuscarDoc.Text;
+
+            // Llama al método para buscar en la base de datos y mostrar la información
+            BuscarParaEliminar(noDocumento);
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void textBuscarDoc_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Verifica si el carácter no es un dígito y tampoco es una tecla de control (como retroceso).
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Maneja el evento, impidiendo que el carácter se escriba en el TextBox.
+            }
+        }
+
+        private void textObservacion_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar >= 33 && e.KeyChar <= 64) || (e.KeyChar >= 91 && e.KeyChar <= 96) || (e.KeyChar >= 123 && e.KeyChar <= 255))
+            {
+                e.Handled = true;
+                return;
             }
         }
     }

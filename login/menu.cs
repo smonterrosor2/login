@@ -129,6 +129,7 @@ namespace login
         private void button14_Click(object sender, EventArgs e)
         {
             //se coloca el codigo del enlace a lo que corresponde
+            opencontenedorForm(new ConfiguracionUsuarios());
             hideSubMenu();
         }
 

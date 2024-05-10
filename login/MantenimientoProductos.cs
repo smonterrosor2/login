@@ -362,5 +362,15 @@ namespace login
             comboMarca.SelectedIndex = -1; // Esto seleccionará "ningún ítem"
             comboCategoria.SelectedIndex = -1; // Esto seleccionará "ningún ítem"
         }
+
+        private void textCodigo_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboCategoria_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

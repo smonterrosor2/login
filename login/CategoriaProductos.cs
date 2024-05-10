@@ -248,5 +248,33 @@ namespace login
         {
 
         }
+
+        private void textCategoria_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Verifica si el carácter no es un dígito y tampoco es una tecla de control (como retroceso).
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Maneja el evento, impidiendo que el carácter se escriba en el TextBox.
+            }
+        }
+
+        private void textNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar >= 33 && e.KeyChar <= 64) || (e.KeyChar >= 91 && e.KeyChar <= 96) || (e.KeyChar >= 123 && e.KeyChar <= 255))
+            {
+                e.Handled = true;
+                return;
+            }
+        }
+
+        private void textDescripcion_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //Permite el ingreso de letras y números
+            if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+                return;
+            }
+        }
     }
 }

@@ -87,5 +87,10 @@ namespace login
                 MessageBox.Show($"Error al cargar los datos: {ex.Message}");
             }
         }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

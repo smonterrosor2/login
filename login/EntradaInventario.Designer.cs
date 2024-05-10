@@ -60,8 +60,9 @@
             textSubTotal = new TextBox();
             label6 = new Label();
             label12 = new Label();
-            textUsuario = new TextBox();
+            textBuscarDoc = new TextBox();
             label13 = new Label();
+            buttBuscarDoc = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -93,6 +94,7 @@
             buttEliminar.TabIndex = 52;
             buttEliminar.Text = "Eliminar";
             buttEliminar.UseVisualStyleBackColor = false;
+            buttEliminar.Click += buttEliminar_Click;
             // 
             // buttLimpiar
             // 
@@ -129,6 +131,7 @@
             // 
             textDescripcion.Location = new Point(480, 149);
             textDescripcion.Name = "textDescripcion";
+            textDescripcion.ReadOnly = true;
             textDescripcion.Size = new Size(356, 23);
             textDescripcion.TabIndex = 48;
             // 
@@ -158,10 +161,14 @@
             // textCodigo
             // 
             textCodigo.Location = new Point(162, 149);
+            textCodigo.MaxLength = 38;
             textCodigo.Name = "textCodigo";
+            textCodigo.ShortcutsEnabled = false;
             textCodigo.Size = new Size(143, 23);
             textCodigo.TabIndex = 45;
+            textCodigo.TextChanged += textCodigo_TextChanged;
             textCodigo.KeyDown += textCodigo_KeyDown;
+            textCodigo.KeyPress += textCodigo_KeyPress;
             textCodigo.PreviewKeyDown += textCodigo_PreviewKeyDown;
             // 
             // label3
@@ -178,7 +185,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(378, 69);
+            label2.Location = new Point(326, 68);
             label2.Name = "label2";
             label2.Size = new Size(0, 15);
             label2.TabIndex = 43;
@@ -186,9 +193,12 @@
             // textObservacion
             // 
             textObservacion.Location = new Point(208, 392);
+            textObservacion.MaxLength = 25;
             textObservacion.Name = "textObservacion";
+            textObservacion.ShortcutsEnabled = false;
             textObservacion.Size = new Size(292, 23);
             textObservacion.TabIndex = 57;
+            textObservacion.KeyPress += textObservacion_KeyPress;
             // 
             // label1
             // 
@@ -205,6 +215,7 @@
             // 
             textExistencia.Location = new Point(184, 199);
             textExistencia.Name = "textExistencia";
+            textExistencia.ReadOnly = true;
             textExistencia.Size = new Size(66, 23);
             textExistencia.TabIndex = 59;
             // 
@@ -222,7 +233,9 @@
             // textCantidad
             // 
             textCantidad.Location = new Point(344, 198);
+            textCantidad.MaxLength = 38;
             textCantidad.Name = "textCantidad";
+            textCantidad.ShortcutsEnabled = false;
             textCantidad.Size = new Size(66, 23);
             textCantidad.TabIndex = 61;
             textCantidad.TextChanged += textCantidad_TextChanged;
@@ -243,8 +256,10 @@
             // 
             textCosto.Location = new Point(489, 197);
             textCosto.Name = "textCosto";
+            textCosto.ReadOnly = true;
             textCosto.Size = new Size(81, 23);
             textCosto.TabIndex = 63;
+            textCosto.TextAlignChanged += textCosto_TextAlignChanged;
             textCosto.TextChanged += textCosto_TextChanged;
             // 
             // label7
@@ -282,7 +297,7 @@
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label9.ForeColor = SystemColors.ControlLightLight;
-            label9.Location = new Point(302, 101);
+            label9.Location = new Point(250, 100);
             label9.Name = "label9";
             label9.Size = new Size(110, 17);
             label9.TabIndex = 69;
@@ -290,9 +305,10 @@
             // 
             // textNoDoc
             // 
-            textNoDoc.Location = new Point(418, 100);
+            textNoDoc.Location = new Point(366, 99);
             textNoDoc.Name = "textNoDoc";
-            textNoDoc.Size = new Size(152, 23);
+            textNoDoc.ReadOnly = true;
+            textNoDoc.Size = new Size(82, 23);
             textNoDoc.TabIndex = 68;
             textNoDoc.PreviewKeyDown += textNoDoc_PreviewKeyDown;
             // 
@@ -300,6 +316,7 @@
             // 
             textTotal.Location = new Point(755, 391);
             textTotal.Name = "textTotal";
+            textTotal.ReadOnly = true;
             textTotal.Size = new Size(81, 23);
             textTotal.TabIndex = 73;
             // 
@@ -318,6 +335,7 @@
             // 
             textCantidad2.Location = new Point(597, 392);
             textCantidad2.Name = "textCantidad2";
+            textCantidad2.ReadOnly = true;
             textCantidad2.Size = new Size(81, 23);
             textCantidad2.TabIndex = 71;
             // 
@@ -367,14 +385,17 @@
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(100, 241);
             dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.Size = new Size(736, 127);
             dataGridView1.TabIndex = 76;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // textSubTotal
             // 
             textSubTotal.Location = new Point(673, 199);
             textSubTotal.Name = "textSubTotal";
+            textSubTotal.ReadOnly = true;
             textSubTotal.Size = new Size(81, 23);
             textSubTotal.TabIndex = 78;
             // 
@@ -394,18 +415,22 @@
             label12.AutoSize = true;
             label12.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label12.ForeColor = SystemColors.ControlLightLight;
-            label12.Location = new Point(623, 101);
+            label12.Location = new Point(472, 102);
             label12.Name = "label12";
-            label12.Size = new Size(55, 17);
+            label12.Size = new Size(128, 17);
             label12.TabIndex = 81;
-            label12.Text = "Usuario";
+            label12.Text = "Buscar Documento:";
             // 
-            // textUsuario
+            // textBuscarDoc
             // 
-            textUsuario.Location = new Point(684, 100);
-            textUsuario.Name = "textUsuario";
-            textUsuario.Size = new Size(152, 23);
-            textUsuario.TabIndex = 80;
+            textBuscarDoc.Location = new Point(602, 100);
+            textBuscarDoc.MaxLength = 38;
+            textBuscarDoc.Name = "textBuscarDoc";
+            textBuscarDoc.ShortcutsEnabled = false;
+            textBuscarDoc.Size = new Size(152, 23);
+            textBuscarDoc.TabIndex = 80;
+            textBuscarDoc.TextChanged += textUsuario_TextChanged;
+            textBuscarDoc.KeyPress += textBuscarDoc_KeyPress;
             // 
             // label13
             // 
@@ -415,14 +440,29 @@
             label13.Size = new Size(0, 15);
             label13.TabIndex = 79;
             // 
+            // buttBuscarDoc
+            // 
+            buttBuscarDoc.BackColor = Color.FromArgb(0, 0, 64);
+            buttBuscarDoc.FlatAppearance.BorderSize = 0;
+            buttBuscarDoc.FlatStyle = FlatStyle.Flat;
+            buttBuscarDoc.ForeColor = SystemColors.ControlLightLight;
+            buttBuscarDoc.Location = new Point(770, 99);
+            buttBuscarDoc.Name = "buttBuscarDoc";
+            buttBuscarDoc.Size = new Size(66, 25);
+            buttBuscarDoc.TabIndex = 82;
+            buttBuscarDoc.Text = "Buscar";
+            buttBuscarDoc.UseVisualStyleBackColor = false;
+            buttBuscarDoc.Click += buttBuscarDoc_Click;
+            // 
             // EntradaInventario
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(946, 538);
+            Controls.Add(buttBuscarDoc);
             Controls.Add(label12);
-            Controls.Add(textUsuario);
+            Controls.Add(textBuscarDoc);
             Controls.Add(label13);
             Controls.Add(textSubTotal);
             Controls.Add(label6);
@@ -498,7 +538,8 @@
         private TextBox textSubTotal;
         private Label label6;
         private Label label12;
-        private TextBox textUsuario;
+        private TextBox textBuscarDoc;
         private Label label13;
+        private Button buttBuscarDoc;
     }
 }
