@@ -11,7 +11,7 @@ using System.Runtime.InteropServices;
 using System.Diagnostics.Contracts;
 using Oracle.ManagedDataAccess.Client;
 using Oracle.ManagedDataAccess.Types;
-using System.Data.OracleClient;
+//using system.data.oracleclient;
 using login.Datos;
 
 

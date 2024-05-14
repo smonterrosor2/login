@@ -18,7 +18,7 @@ namespace login
         {
             InitializeComponent();
         }
-        Encriptacion encriptacion = new Encriptacion();
+        //Encriptacion encriptacion = new Encriptacion();
         private void label1_Click(object sender, EventArgs e)
         {
 
