@@ -366,10 +366,11 @@
             // 
             // buttInsertar
             // 
-            buttInsertar.BackColor = Color.FromArgb(0, 0, 64);
+            buttInsertar.BackColor = SystemColors.ControlLightLight;
             buttInsertar.FlatAppearance.BorderSize = 0;
             buttInsertar.FlatStyle = FlatStyle.Flat;
-            buttInsertar.ForeColor = SystemColors.ControlLightLight;
+            buttInsertar.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            buttInsertar.ForeColor = Color.FromArgb(0, 0, 64);
             buttInsertar.Location = new Point(770, 197);
             buttInsertar.Name = "buttInsertar";
             buttInsertar.Size = new Size(66, 25);
@@ -446,7 +447,7 @@
             buttBuscarDoc.FlatAppearance.BorderSize = 0;
             buttBuscarDoc.FlatStyle = FlatStyle.Flat;
             buttBuscarDoc.ForeColor = SystemColors.ControlLightLight;
-            buttBuscarDoc.Location = new Point(770, 99);
+            buttBuscarDoc.Location = new Point(770, 97);
             buttBuscarDoc.Name = "buttBuscarDoc";
             buttBuscarDoc.Size = new Size(66, 25);
             buttBuscarDoc.TabIndex = 82;
