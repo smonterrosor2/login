@@ -347,15 +347,24 @@ namespace login
 
         private void buttNuevo_Click(object sender, EventArgs e)
         {
-            // Confirmar si se desea realizar la eliminación
-            DialogResult result = MessageBox.Show("¿Seguro que desea insertar los registros indicados?", "Confirmar inserción", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (result == DialogResult.Yes)
+            if (!string.IsNullOrWhiteSpace(textObservacion.Text) && dataGridView1.Rows.Count > 1)
             {
-                InsertarDatos();
-                LimpiarControles();
-                CargarDatos.CargarUltimoIDInventario(textNoDoc, ConexionBD.Conex);
-                EstablecerFechaActual();
+
+                DialogResult result = MessageBox.Show("¿Seguro que desea insertar los registros indicados?", "Confirmar inserción", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    InsertarDatos();
+                   LimpiarControles();
+                    CargarDatos.CargarUltimoIDInventario(textNoDoc, ConexionBD.Conex);
+                    EstablecerFechaActual();
+                }
+            }
+            else
+            {
+                // Si alguno de los controles está vacío, muestra un mensaje al usuario y sale del evento
+                MessageBox.Show("Faltan datos que llenar.");
+                return;
             }
         }
 

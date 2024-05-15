@@ -17,6 +17,15 @@ namespace login
         public MantenimientoMarca()
         {
             InitializeComponent();
+            buttNuevo.Enabled = true;
+            buttModificar.Enabled = false;
+            buttEliminar.Enabled = false;
+            buttNuevo.EnabledChanged += Button_EnabledChanged;
+            buttModificar.EnabledChanged += Button_EnabledChanged;
+            buttEliminar.EnabledChanged += Button_EnabledChanged;
+
+
+            ApplyInitialButtonColors();
         }
 
         private void buttBuscar_Click(object sender, EventArgs e)
@@ -51,6 +60,8 @@ namespace login
                         if (reader.Read())
                         {
                             textNombre.Text = reader["NOMBRE"].ToString();
+                            buttModificar.Enabled = true;
+                            buttEliminar.Enabled = true;
                         }
                         else
                         {
@@ -68,7 +79,11 @@ namespace login
 
         private void buttNuevo_Click(object sender, EventArgs e)
         {
-            // Obtiene los valores ingresados por el usuario
+            if (!ValidarTextBoxes())
+            {
+                return; 
+            }
+
             string codigoMarca = textCodigo.Text;
             string nombreMarca = textNombre.Text;
 
@@ -231,6 +246,8 @@ namespace login
         {
             textCodigo.Text = "";
             textNombre.Text = "";
+            buttModificar.Enabled = false;
+            buttEliminar.Enabled = false;
         }
 
         private void textCodigo_KeyPress(object sender, KeyPressEventArgs e)
@@ -249,6 +266,68 @@ namespace login
                 e.Handled = true;
                 return;
             }
+        }
+
+        private void Button_EnabledChanged(object sender, EventArgs e)
+        {
+            System.Windows.Forms.Button button = sender as System.Windows.Forms.Button;
+            if (button != null)
+            {
+                if (!button.Enabled)
+                {
+                    // Define los colores cuando el botón está deshabilitado
+                    button.BackColor = Color.White;
+                    button.ForeColor = Color.FromArgb(0, 0, 64);
+                }
+                else
+                {
+                    // Restaura los colores originales cuando el botón está habilitado
+                    button.BackColor = Color.FromArgb(0, 0, 64);  // Fondo azul oscuro
+                    button.ForeColor = Color.White;  // Texto blanco
+                }
+            }
+        }
+
+        private void ApplyInitialButtonColors()
+        {
+            UpdateButtonColors(buttNuevo);
+            UpdateButtonColors(buttModificar);
+            UpdateButtonColors(buttEliminar);
+            // Repetir para otros botones según sea necesario
+        }
+
+        private void UpdateButtonColors(System.Windows.Forms.Button button)
+        {
+            if (!button.Enabled)
+            {
+                button.BackColor = Color.White;
+                button.ForeColor = Color.FromArgb(0, 0, 64);
+            }
+            else
+            {
+                button.BackColor = Color.FromArgb(0, 0, 64);
+                button.ForeColor = Color.White;
+            }
+        }
+
+        private bool ValidarTextBoxes()
+        {
+            foreach (Control control in this.Controls)
+            {
+                // Verifica si el control es un TextBox
+                if (control is TextBox)
+                {
+                    TextBox textBox = control as TextBox;
+
+                    // Verifica si el TextBox está vacío
+                    if (string.IsNullOrWhiteSpace(textBox.Text))
+                    {
+                        MessageBox.Show("Debe llenar todos los campos");
+                        return false;
+                    }
+                }
+            }
+            return true;
         }
     }
 }
