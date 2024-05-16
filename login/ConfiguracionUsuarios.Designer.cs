@@ -311,7 +311,7 @@
         #endregion
 
         private Label label1;
-        private TextBox textBox1;
+        //private TextBox textBox1;
         private Label label2;
         private ComboBox comboBox1;
         private Label label4;

@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+ 
 #pragma warning disable 1591
 
 namespace login {
@@ -16,19 +17,19 @@ namespace login {
     /// <summary>
     ///Represents a strongly typed in-memory cache of data.
     ///</summary>
-    [global::System.Serializable()]
-    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
-    [global::System.ComponentModel.ToolboxItem(true)]
-    [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("DataSet1")]
-    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
+   // [global::System.Serializable()]
+    //[global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    //[global::System.ComponentModel.ToolboxItem(true)]
+    //[global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
+    //[global::System.Xml.Serialization.XmlRootAttribute("DataSet1")]
+    //[global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]//
     public partial class DataSet1 : global::System.Data.DataSet {
         
-        private CATEGORIA_PRODUCTOSDataTable tableCATEGORIA_PRODUCTOS;
+       private CATEGORIA_PRODUCTOSDataTable tableCATEGORIA_PRODUCTOS;
         
-        private INVENTARIODataTable tableINVENTARIO;
+      private INVENTARIODataTable tableINVENTARIO;
         
-        private MARCADataTable tableMARCA;
+       private MARCADataTable tableMARCA;
         
         private PRODUCTOSDataTable tablePRODUCTOS;
         
@@ -60,8 +61,10 @@ namespace login {
                 global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler1 = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
                 this.Tables.CollectionChanged += schemaChangedHandler1;
                 this.Relations.CollectionChanged += schemaChangedHandler1;
-                return;
+                return; 
             }
+            
+            
             string strSchema = ((string)(info.GetValue("XmlSchema", typeof(string))));
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
@@ -5457,5 +5460,7 @@ namespace login.DataSet1TableAdapters {
         }
     }
 }
+
+//------------------------------------------------------------------------------
 
 #pragma warning restore 1591

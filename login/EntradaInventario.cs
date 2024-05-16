@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using Oracle.ManagedDataAccess.Client;
 using login.Datos;
 using System.Net.NetworkInformation;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolBar;
 
 namespace login
 {
@@ -21,6 +23,16 @@ namespace login
             ConfigurarColumnasDataGridView();
             EstablecerFechaActual();
             textCosto.Text = "0.00";
+            buttInsertar.Enabled = false;
+            buttBuscar.Enabled = true;
+            buttNuevo.Enabled = true;
+            buttEliminar.Enabled = false;
+            buttBuscar.EnabledChanged += Button_EnabledChanged;
+            buttInsertar.EnabledChanged += Button_EnabledChanged;
+            buttNuevo.EnabledChanged += Button_EnabledChanged;
+            buttEliminar.EnabledChanged += Button_EnabledChanged;
+
+            ApplyInitialButtonColors();
         }
 
         // Método que maneja el evento CodigoSeleccionado del formulario ListaProductos
@@ -98,6 +110,7 @@ namespace login
             // Limpiar los TextBox después de la inserción
             LimpiarTextBoxes();
             SumarColumnas();
+            buttInsertar.Enabled = false;
         }
 
         // Método para validar el valor ingresado en el campo Cantidad
@@ -147,6 +160,7 @@ namespace login
 
                             // Asignar el precio al campo textCosto
                             textCosto.Text = precio.ToString();
+                            buttInsertar.Enabled = true;
                         }
                         else
                         {
@@ -208,7 +222,7 @@ namespace login
             }
         }
 
-        private string LimpiarTextoNumerico(TextBox textBox)
+        private string LimpiarTextoNumerico(System.Windows.Forms.TextBox textBox)
         {
             // Eliminar cualquier carácter no numérico del texto
             string textoNumerico = new string(textBox.Text.Where(char.IsDigit).ToArray());
@@ -288,11 +302,15 @@ namespace login
         {
             foreach (Control control in Controls)
             {
-                if (control is TextBox && control != textFecha && control != textNoDoc)
+                if (control is System.Windows.Forms.TextBox && control != textFecha && control != textNoDoc)
                 {
-                    ((TextBox)control).Text = "";
+                    ((System.Windows.Forms.TextBox)control).Text = "";
 
                     textCosto.Text = "0.00";
+                    buttInsertar.Enabled = false;
+                    buttBuscar.Enabled = true;
+                    buttNuevo.Enabled = true;
+                    buttEliminar.Enabled = false;
                 }
             }
 
@@ -329,15 +347,24 @@ namespace login
 
         private void buttNuevo_Click(object sender, EventArgs e)
         {
-            // Confirmar si se desea realizar la eliminación
-            DialogResult result = MessageBox.Show("¿Seguro que desea insertar los registros indicados?", "Confirmar inserción", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (result == DialogResult.Yes)
+            if (!string.IsNullOrWhiteSpace(textObservacion.Text) && dataGridView1.Rows.Count > 1)
             {
-                InsertarDatos();
-                LimpiarControles();
-                CargarDatos.CargarUltimoIDInventario(textNoDoc, ConexionBD.Conex);
-                EstablecerFechaActual();
+
+                DialogResult result = MessageBox.Show("¿Seguro que desea insertar los registros indicados?", "Confirmar inserción", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    InsertarDatos();
+                   LimpiarControles();
+                    CargarDatos.CargarUltimoIDInventario(textNoDoc, ConexionBD.Conex);
+                    EstablecerFechaActual();
+                }
+            }
+            else
+            {
+                // Si alguno de los controles está vacío, muestra un mensaje al usuario y sale del evento
+                MessageBox.Show("Faltan datos que llenar.");
+                return;
             }
         }
 
@@ -412,17 +439,6 @@ namespace login
             }
         }
 
-        private bool ValidarUsuario(string empCodigo)
-        {
-            string query = "SELECT COUNT(*) FROM USUARIOS WHERE EMP_CODIGO = :empCodigo";
-            using (OracleCommand command = new OracleCommand(query, ConexionBD.Conex))
-            {
-                command.Parameters.Add(new OracleParameter("empCodigo", empCodigo));
-                int count = Convert.ToInt32(command.ExecuteScalar());
-                return count > 0;
-            }
-        }
-
         private void textNoDoc_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
 
@@ -432,11 +448,7 @@ namespace login
         {
             // Prepara la consulta SQL para buscar en la tabla DETALLE_INVENTARIO
             string queryDetalle = "SELECT COD_PRODUCTO, DESCRIPCION, INGRESO, COSTO, SUBTOTAL FROM DETALLE_INVENTARIO WHERE NO_DOCUMENTO = :noDocumento";
-
-            // Prepara la consulta SQL para obtener la observación de la tabla DETALLE_INVENTARIO
             string queryObservacion = "SELECT OBSERVACION FROM DETALLE_INVENTARIO WHERE NO_DOCUMENTO = :noDocumento AND ROWNUM = 1";
-
-            // Prepara la consulta SQL para obtener la fecha de la tabla INVENTARIO
             string queryFecha = "SELECT FECHA FROM INVENTARIO WHERE NO_DOCUMENTO = :noDocumento";
 
             // Verifica si la conexión está abierta
@@ -446,8 +458,25 @@ namespace login
                 return;
             }
 
+            // Preparar la consulta SQL para verificar la existencia del número de documento
+            string queryExisteDocumento = "SELECT COUNT(1) FROM INVENTARIO WHERE NO_DOCUMENTO = :noDocumento";
+
+
             try
             {
+                using (OracleCommand commandVerificar = new OracleCommand(queryExisteDocumento, ConexionBD.Conex))
+                {
+                    commandVerificar.Parameters.Add(new OracleParameter("noDocumento", noDocumento));
+
+                    // Ejecutar la consulta y verificar el resultado
+                    int count = Convert.ToInt32(commandVerificar.ExecuteScalar());
+                    if (count == 0)
+                    {
+                        MessageBox.Show("El número de documento no existe en la base de datos.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+                }
+
                 using (OracleCommand commandDetalle = new OracleCommand(queryDetalle, ConexionBD.Conex))
                 {
                     commandDetalle.Parameters.Add(new OracleParameter("noDocumento", noDocumento));
@@ -491,6 +520,12 @@ namespace login
                         textFecha.Text = fecha.ToString();
                     }
                 }
+
+                buttBuscar.Enabled = false;
+                buttInsertar.Enabled = false;
+                buttNuevo.Enabled = false;
+                buttEliminar.Enabled = true;
+
             }
             catch (Exception ex)
             {
@@ -637,5 +672,50 @@ namespace login
                 return;
             }
         }
+
+        private void Button_EnabledChanged(object sender, EventArgs e)
+        {
+            System.Windows.Forms.Button button = sender as System.Windows.Forms.Button;
+            if (button != null)
+            {
+                if (!button.Enabled)
+                {
+                    // Define los colores cuando el botón está deshabilitado
+                    button.BackColor = Color.White;
+                    button.ForeColor = Color.FromArgb(0, 0, 64);
+                }
+                else
+                {
+                    // Restaura los colores originales cuando el botón está habilitado
+                    button.BackColor = Color.FromArgb(0, 0, 64);  // Fondo azul oscuro
+                    button.ForeColor = Color.White;  // Texto blanco
+                }
+            }
+        }
+
+
+        private void ApplyInitialButtonColors()
+        {
+            UpdateButtonColors(buttInsertar);
+            UpdateButtonColors(buttNuevo);
+            UpdateButtonColors(buttBuscar);
+            UpdateButtonColors(buttEliminar);
+            // Repetir para otros botones según sea necesario
+        }
+
+        private void UpdateButtonColors(System.Windows.Forms.Button button)
+        {
+            if (!button.Enabled)
+            {
+                button.BackColor = Color.White;
+                button.ForeColor = Color.FromArgb(0, 0, 64);
+            }
+            else
+            {
+                button.BackColor = Color.FromArgb(0, 0, 64);
+                button.ForeColor = Color.White;
+            }
+        }
+
     }
 }
