@@ -19,6 +19,16 @@ namespace login
             InitializeComponent();
             CargarMarcas();
             CargarCategorias();
+
+            button1.Enabled = true; //nuevo
+            button4.Enabled = false; //modificar
+            button3.Enabled = false; //eliminar
+            button1.EnabledChanged += Button_EnabledChanged;
+            button4.EnabledChanged += Button_EnabledChanged;
+            button3.EnabledChanged += Button_EnabledChanged;
+
+
+            ApplyInitialButtonColors();
         }
 
         private void CargarMarcas()
@@ -148,6 +158,10 @@ namespace login
                             // Esto requiere que los ComboBox ya tengan cargados todos los posibles valores.
                             comboMarca.SelectedIndex = comboMarca.FindStringExact(reader["NOMBRE_MARCA"].ToString());
                             comboCategoria.SelectedIndex = comboCategoria.FindStringExact(reader["NOMBRE_CATEGORIA"].ToString());
+
+                            button1.Enabled = false;
+                            button4.Enabled = true;
+                            button3.Enabled = true;
                         }
                         else
                         {
@@ -165,6 +179,11 @@ namespace login
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (!ValidarTextBoxes())
+            {
+                return;
+            }
+
             InsertarProducto(
             textCodigo.Text.Trim(),
             textReferencia.Text.Trim(),
@@ -220,6 +239,11 @@ namespace login
 
         private void button4_Click(object sender, EventArgs e)
         {
+            if (!ValidarTextBoxes())
+            {
+                return;
+            }
+
             // Asume que textCodigo contiene el código del producto a actualizar
             string codigoProducto = textCodigo.Text.Trim();
             string referencia = textReferencia.Text.Trim();
@@ -359,6 +383,10 @@ namespace login
             textPresentacion.Text = "";
             textPrecio.Text = "";
 
+            button1.Enabled = true;
+            button4.Enabled = false;
+            button3.Enabled = false;
+
             comboMarca.SelectedIndex = -1; // Esto seleccionará "ningún ítem"
             comboCategoria.SelectedIndex = -1; // Esto seleccionará "ningún ítem"
         }
@@ -371,6 +399,80 @@ namespace login
         private void comboCategoria_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void Numeros_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void Numeros_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void Button_EnabledChanged(object sender, EventArgs e)
+        {
+            System.Windows.Forms.Button button = sender as System.Windows.Forms.Button;
+            if (button != null)
+            {
+                if (!button.Enabled)
+                {
+                    // Define los colores cuando el botón está deshabilitado
+                    button.BackColor = Color.White;
+                    button.ForeColor = Color.FromArgb(0, 0, 64);
+                }
+                else
+                {
+                    // Restaura los colores originales cuando el botón está habilitado
+                    button.BackColor = Color.FromArgb(0, 0, 64);  // Fondo azul oscuro
+                    button.ForeColor = Color.White;  // Texto blanco
+                }
+            }
+        }
+
+        private void ApplyInitialButtonColors()
+        {
+            UpdateButtonColors(button1);
+            UpdateButtonColors(button4);
+            UpdateButtonColors(button3);
+            // Repetir para otros botones según sea necesario
+        }
+
+        private void UpdateButtonColors(System.Windows.Forms.Button button)
+        {
+            if (!button.Enabled)
+            {
+                button.BackColor = Color.White;
+                button.ForeColor = Color.FromArgb(0, 0, 64);
+            }
+            else
+            {
+                button.BackColor = Color.FromArgb(0, 0, 64);
+                button.ForeColor = Color.White;
+            }
+        }
+
+        private bool ValidarTextBoxes()
+        {
+            foreach (Control control in this.Controls)
+            {
+                // Verifica si el control es un TextBox
+                if (control is TextBox)
+                {
+                    TextBox textBox = control as TextBox;
+
+                    // Verifica si el TextBox está vacío
+                    if (string.IsNullOrWhiteSpace(textBox.Text))
+                    {
+                        MessageBox.Show("Debe llenar todos los campos");
+                        return false;
+                    }
+                }
+            }
+            return true;
         }
     }
 }

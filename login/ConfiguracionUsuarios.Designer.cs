@@ -48,6 +48,7 @@
             Direccion = new TextBox();
             button4 = new Button();
             label10 = new Label();
+            checkBoxMostrarContraseña = new CheckBox();
             SuspendLayout();
             // 
             // label1
@@ -64,11 +65,14 @@
             // 
             // EMP_CODIGO
             // 
+            EMP_CODIGO.AcceptsReturn = true;
             EMP_CODIGO.Location = new Point(179, 99);
+            EMP_CODIGO.MaxLength = 8;
             EMP_CODIGO.Name = "EMP_CODIGO";
             EMP_CODIGO.Size = new Size(221, 23);
             EMP_CODIGO.TabIndex = 1;
-            EMP_CODIGO.TextChanged += EMP_CODIGO_TextChanged;
+            EMP_CODIGO.TextChanged += Numeros_TextChanged;
+            EMP_CODIGO.KeyPress += Numeros_KeyPress;
             // 
             // label2
             // 
@@ -95,9 +99,12 @@
             // Nombres
             // 
             Nombres.Location = new Point(179, 157);
+            Nombres.MaxLength = 20;
             Nombres.Name = "Nombres";
             Nombres.Size = new Size(221, 23);
             Nombres.TabIndex = 6;
+            Nombres.TextChanged += Numeros_TextChanged;
+            Nombres.KeyPress += Letras_KeyPress;
             // 
             // label7
             // 
@@ -124,6 +131,7 @@
             // Contrasena
             // 
             Contrasena.Location = new Point(547, 214);
+            Contrasena.MaxLength = 8;
             Contrasena.Name = "Contrasena";
             Contrasena.Size = new Size(221, 23);
             Contrasena.TabIndex = 13;
@@ -196,9 +204,12 @@
             // No_Identificacion
             // 
             No_Identificacion.Location = new Point(179, 218);
+            No_Identificacion.MaxLength = 13;
             No_Identificacion.Name = "No_Identificacion";
             No_Identificacion.Size = new Size(221, 23);
             No_Identificacion.TabIndex = 8;
+            No_Identificacion.TextChanged += No_Identificacion_TextChanged;
+            No_Identificacion.KeyPress += Numeros_KeyPress;
             // 
             // label5
             // 
@@ -225,9 +236,11 @@
             // Apellidos
             // 
             Apellidos.Location = new Point(547, 159);
+            Apellidos.MaxLength = 20;
             Apellidos.Name = "Apellidos";
             Apellidos.Size = new Size(221, 23);
             Apellidos.TabIndex = 56;
+            Apellidos.KeyPress += Letras_KeyPress;
             // 
             // label9
             // 
@@ -243,9 +256,11 @@
             // Direccion
             // 
             Direccion.Location = new Point(179, 281);
+            Direccion.MaxLength = 50;
             Direccion.Name = "Direccion";
             Direccion.Size = new Size(589, 23);
             Direccion.TabIndex = 58;
+            Direccion.KeyPress += Direccion_KeyPress;
             // 
             // button4
             // 
@@ -274,12 +289,23 @@
             label10.TabIndex = 59;
             label10.Click += label10_Click;
             // 
+            // checkBoxMostrarContraseña
+            // 
+            checkBoxMostrarContraseña.AutoSize = true;
+            checkBoxMostrarContraseña.Location = new Point(749, 218);
+            checkBoxMostrarContraseña.Name = "checkBoxMostrarContraseña";
+            checkBoxMostrarContraseña.Size = new Size(15, 14);
+            checkBoxMostrarContraseña.TabIndex = 62;
+            checkBoxMostrarContraseña.UseVisualStyleBackColor = true;
+            checkBoxMostrarContraseña.CheckedChanged += checkBoxMostrarContraseña_CheckedChanged;
+            // 
             // ConfiguracionUsuarios
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(833, 481);
+            Controls.Add(checkBoxMostrarContraseña);
             Controls.Add(button4);
             Controls.Add(label10);
             Controls.Add(Direccion);
@@ -339,5 +365,6 @@
         private TextBox No_Identificacion;
         private TextBox Contrasena;
         private Label label10;
+        private CheckBox checkBoxMostrarContraseña;
     }
 }

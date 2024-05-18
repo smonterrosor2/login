@@ -7,6 +7,8 @@ using login.Datos;
 using System.Net.NetworkInformation;
 using System.Data;
 using login.Entidades;
+using iTextSharp.text.pdf;
+using iTextSharp.text;
 
 
 namespace login
@@ -19,6 +21,7 @@ namespace login
             ConfigurarColumnasDataGridView();
             EstablecerFechaActual();
             textCosto.Text = "0.00";
+            buttImprimir.Enabled = false;
             CargarDatos.CargarUltimoIDInventario(textNoDoc, ConexionBD.Conex);
         }
 
@@ -79,10 +82,12 @@ namespace login
 
         }
 
+
         private void EstablecerFechaActual()
         {
             // Establece la fecha actual en el TextBox textFecha
             textFecha.Text = DateTime.Now.ToString("dd/MM/yy");
+
         }
 
 
@@ -107,6 +112,8 @@ namespace login
         private void buttBuscar_Click(object sender, EventArgs e)
         {
             CargarDatosProducto();
+            //----- Deshabilitar el botón "Nuevo"
+            buttNuevo.Enabled = false;
         }
 
         private void CargarDatosProducto()
@@ -264,6 +271,7 @@ namespace login
                     ((TextBox)control).Text = "";
 
                     textCosto.Text = "0.00";
+                    buttImprimir.Enabled = false;
                 }
             }
 
@@ -404,8 +412,41 @@ namespace login
                 return;
             }
 
+            string queryExisteDocumento = "SELECT COUNT(1) FROM INVENTARIO WHERE NO_DOCUMENTO = :noDocumento";
+
+
             try
             {
+                using (OracleCommand commandVerificar = new OracleCommand(queryExisteDocumento, ConexionBD.Conex))
+                {
+                    commandVerificar.Parameters.Add(new OracleParameter("noDocumento", noDocumento));
+
+                    // Ejecutar la consulta y verificar el resultado
+                    int count = Convert.ToInt32(commandVerificar.ExecuteScalar());
+                    if (count == 0)
+                    {
+                        MessageBox.Show("El número de documento no existe en la base de datos.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        textUsuario.Text = "";
+                        return;
+                    }
+                    else
+                    {
+                        // Si el documento existe, verificamos el tipo de documento
+                        string queryVerificarTipoDocumento = "SELECT TIPO_DOCUMENTO FROM INVENTARIO WHERE NO_DOCUMENTO = :noDocumento";
+                        using (OracleCommand commandTipoDocumento = new OracleCommand(queryVerificarTipoDocumento, ConexionBD.Conex))
+                        {
+                            commandTipoDocumento.Parameters.Add(new OracleParameter("noDocumento", noDocumento));
+
+                            string tipoDocumento = commandTipoDocumento.ExecuteScalar().ToString();
+                            if (tipoDocumento != "SI")
+                            {
+                                MessageBox.Show("El tipo de documento no es válido.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                return;
+                            }
+                        }
+                    }
+                }
+
                 using (OracleCommand commandDetalle = new OracleCommand(queryDetalle, ConexionBD.Conex))
                 {
                     commandDetalle.Parameters.Add(new OracleParameter("noDocumento", noDocumento));
@@ -444,11 +485,16 @@ namespace login
                 {
                     commandFecha.Parameters.Add(new OracleParameter("noDocumento", noDocumento));
                     object fecha = commandFecha.ExecuteScalar();
-                    if (fecha != null)
+                    if (fecha != null && fecha is DateTime)
                     {
-                        textFecha.Text = fecha.ToString();
+                        DateTime fechaDateTime = (DateTime)fecha;
+                        textFecha.Text = fechaDateTime.ToString("yyyy-MM-dd"); // Formatear solo la fecha
                     }
                 }
+
+                buttImprimir.Enabled = true;
+
+                SumarColumnas();
             }
             catch (Exception ex)
             {
@@ -526,6 +572,8 @@ namespace login
         private void buttBuscarDoc_Click(object sender, EventArgs e)
         {
             string noDocumento = textUsuario.Text;
+            // Deshabilitar el botón "Nuevo"
+            buttNuevo.Enabled = false;
 
             // Llama al método para buscar en la base de datos y mostrar la información
             BuscarParaEliminar(noDocumento);
@@ -550,6 +598,70 @@ namespace login
             SumarColumnas();
         }
 
+
+        private void buttNuevo_Click_1(object sender, EventArgs e)
+        {
+            // Confirmar si se desea realizar la eliminación
+            DialogResult result = MessageBox.Show("¿Seguro que desea insertar los registros indicados?", "Confirmar inserción", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                InsertarDatos();
+
+                DialogResult resultPDF = MessageBox.Show("¿Desea generar un PDF de su transacción?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (resultPDF == DialogResult.Yes)
+                {
+                    GeneradorPDF();
+                }
+
+                LimpiarControles();
+                CargarDatos.CargarUltimoIDInventario(textNoDoc, ConexionBD.Conex);
+                EstablecerFechaActual();
+            }
+        }
+
+        private void buttEliminar_Click_1(object sender, EventArgs e)
+        {
+            //nota textUsuario es parte de buscar no. documento, si lo elimino me da error
+            string noDocumento = textUsuario.Text;
+
+            // Confirmar si se desea realizar la eliminación
+            DialogResult result = MessageBox.Show("¿Seguro que desea eliminar los registros asociados al documento?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                // Llamar al método para eliminar registros del inventario
+                EliminarRegistro(noDocumento);
+                LimpiarControles();
+                CargarDatos.CargarUltimoIDInventario(textNoDoc, ConexionBD.Conex);
+                EstablecerFechaActual();
+            }
+        }
+
+        private void buttLimpiar_Click(object sender, EventArgs e)
+        {
+            // Habilitar el botón "Nuevo" al limpiar los campos
+            buttNuevo.Enabled = true;
+
+            foreach (Control control in Controls)
+            {
+                if (control is TextBox && control != textFecha && control != textNoDoc)
+                {
+                    ((TextBox)control).Text = "";
+
+                    textCosto.Text = "0.00";
+                    buttImprimir.Enabled = false;
+                }
+            }
+
+            // Limpiar el DataGridView
+            dataGridView1.Rows.Clear();
+        }
+        private void buttImprimir_Click(object sender, EventArgs e)
+        {
+            GeneradorPDF();
+        }
         private void textNoDoc_PreviewKeyDown_1(object sender, PreviewKeyDownEventArgs e)
         {
             string noDocumento = textNoDoc.Text;
@@ -577,58 +689,8 @@ namespace login
             textSubTotal.Text = string.Format("Q. {0,10}", subtotal.ToString("#,##0.00"));
         }
 
-        private void buttNuevo_Click_1(object sender, EventArgs e)
-        {
-            // Confirmar si se desea realizar la eliminación
-            DialogResult result = MessageBox.Show("¿Seguro que desea insertar los registros indicados?", "Confirmar inserción", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (result == DialogResult.Yes)
-            {
-                InsertarDatos();
-                LimpiarControles();
-                CargarDatos.CargarUltimoIDInventario(textNoDoc, ConexionBD.Conex);
-                EstablecerFechaActual();
-            }
-        }
-
-        private void buttEliminar_Click_1(object sender, EventArgs e)
-        {
-            // Obtener el número de documento del TextBox
-            //nota textUsuario es parte de buscar no. documento, si lo elimino me da error
-            string noDocumento = textUsuario.Text;
-
-            // Confirmar si se desea realizar la eliminación
-            DialogResult result = MessageBox.Show("¿Seguro que desea eliminar los registros asociados al documento?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (result == DialogResult.Yes)
-            {
-                // Llamar al método para eliminar registros del inventario
-                EliminarRegistro(noDocumento);
-                LimpiarControles();
-                CargarDatos.CargarUltimoIDInventario(textNoDoc, ConexionBD.Conex);
-                EstablecerFechaActual();
-            }
-        }
-
-        private void buttLimpiar_Click(object sender, EventArgs e)
-        {
-
-            foreach (Control control in Controls)
-            {
-                if (control is TextBox && control != textFecha && control != textNoDoc)
-                {
-                    ((TextBox)control).Text = "";
-
-                    textCosto.Text = "0.00";
-                }
-            }
-
-            // Limpiar el DataGridView
-            dataGridView1.Rows.Clear();
-        }
         private void textCodigo_TextChanged(object sender, EventArgs e)
-        {
-        }
+        { }
 
         //PARA LOS PARAMETROS DE SEGURIDAD DE LETRAS Y NUMEROS
         //btn codigo
@@ -721,15 +783,117 @@ namespace login
         }
         //btn usuario -- pendiente colocarle si es numero  o letras
         private void textUsuario_KeyPress(object sender, KeyPressEventArgs e)
-        {
-
+        {      //no dejara pasar numeros del 32 al 47 y del 58 al 47 para que solo se queden los num. en el ASCII
+            if ((e.KeyChar >= 32 && e.KeyChar <= 47) || (e.KeyChar >= 58 && e.KeyChar <= 255))
+            {
+                MessageBox.Show("Ingrese solo números", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
         }
         private void textNoDoc_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-       
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        { }
+
+        private void textFecha_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textCodigo_PreviewKeyDown_1(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode == Keys.Tab)
+            {
+                // Crear una instancia del formulario ListaProductos y pasar el formulario EntradaInventario como argumento
+                Lista_Productos_salida listaProductos = new Lista_Productos_salida(this);
+
+                // Mostrar el formulario ListaProductos
+                listaProductos.Show();
+            }
+        }
+
+        private void GeneradorPDF()
+        {
+            // Crear un cuadro de diálogo para guardar el archivo PDF
+            SaveFileDialog guardarDialogo = new SaveFileDialog();
+            guardarDialogo.Filter = "Archivos PDF (*.pdf)|*.pdf";
+            guardarDialogo.Title = "Guardar PDF";
+
+            if (guardarDialogo.ShowDialog() == DialogResult.OK)
+            {
+                string nombreArchivo = guardarDialogo.FileName;
+
+
+                // Crear documento PDF
+                Document documento = new Document(PageSize.A4);
+
+                try
+                {
+                    // Crear un escritor de PDF
+                    PdfWriter.GetInstance(documento, new FileStream(nombreArchivo, FileMode.Create));
+
+                    // Abrir el documento
+                    documento.Open();
+
+                    // Agregar la palabra "Inventario" con estilo
+                    iTextSharp.text.Font tituloFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 24, BaseColor.BLACK);
+                    Paragraph titulo = new Paragraph("Salidas de Inventario", tituloFont);
+                    titulo.Alignment = Element.ALIGN_CENTER;
+                    documento.Add(titulo);
+
+
+                    // Crear contenido adicional para agregar al PDF
+                    string contenidoAdicional = $"Fecha : {textFecha.Text}\n";
+                    contenidoAdicional += $"Numero del documento: {textNoDoc.Text}\n\n";
+                    contenidoAdicional += $"Observaciones: {textObservacion.Text}\n\n";
+                    contenidoAdicional += $"Cantidad: {textCantidad2.Text}\n\n";
+                    contenidoAdicional += $"Total: {textTotal.Text}\n\n";
+
+
+                    documento.Add(new Paragraph(contenidoAdicional));
+
+
+                    // Agregar contenido del DataGridView al PDF
+                    PdfPTable tabla = new PdfPTable(dataGridView1.Columns.Count);
+                    tabla.WidthPercentage = 100;
+
+                    // Agregar encabezados de columna
+                    foreach (DataGridViewColumn columna in dataGridView1.Columns)
+                    {
+                        PdfPCell celda = new PdfPCell(new Phrase(columna.HeaderText));
+                        tabla.AddCell(celda);
+                    }
+
+                    // Agregar filas y celdas
+                    foreach (DataGridViewRow fila in dataGridView1.Rows)
+                    {
+                        foreach (DataGridViewCell celda in fila.Cells)
+                        {
+                            if (celda.Value != null)
+                            {
+                                tabla.AddCell(celda.Value.ToString());
+                            }
+                        }
+                    }
+
+                    documento.Add(tabla);
+
+                    // Cerrar el documento
+                    documento.Close();
+
+                    MessageBox.Show("PDF generado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al generar el PDF: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
     }
 }
 

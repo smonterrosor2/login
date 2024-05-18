@@ -133,6 +133,10 @@ namespace login
 
         private void buttModificar_Click(object sender, EventArgs e)
         {
+            if (!ValidarTextBoxes())
+            {
+                return;
+            }
             // Obtiene los valores ingresados por el usuario
             string codigoMarca = textCodigo.Text;
             string nombreNuevo = textNombre.Text;

@@ -98,7 +98,7 @@
             // textUsuario
             // 
             textUsuario.Location = new Point(624, 60);
-            textUsuario.MaxLength = 38;
+            textUsuario.MaxLength = 10;
             textUsuario.Name = "textUsuario";
             textUsuario.ShortcutsEnabled = false;
             textUsuario.Size = new Size(121, 23);
@@ -109,6 +109,7 @@
             // 
             textSubTotal.Enabled = false;
             textSubTotal.Location = new Point(641, 170);
+            textSubTotal.MaxLength = 25;
             textSubTotal.Name = "textSubTotal";
             textSubTotal.ShortcutsEnabled = false;
             textSubTotal.Size = new Size(81, 23);
@@ -137,6 +138,7 @@
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.Size = new Size(736, 162);
             dataGridView1.TabIndex = 108;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // buttInsertar
             // 
@@ -170,6 +172,7 @@
             // 
             textTotal.Enabled = false;
             textTotal.Location = new Point(723, 391);
+            textTotal.MaxLength = 50;
             textTotal.Name = "textTotal";
             textTotal.ShortcutsEnabled = false;
             textTotal.Size = new Size(81, 23);
@@ -190,6 +193,7 @@
             // 
             textCantidad2.Enabled = false;
             textCantidad2.Location = new Point(565, 392);
+            textCantidad2.MaxLength = 50;
             textCantidad2.Name = "textCantidad2";
             textCantidad2.ShortcutsEnabled = false;
             textCantidad2.Size = new Size(81, 23);
@@ -245,17 +249,19 @@
             // 
             textFecha.Enabled = false;
             textFecha.Location = new Point(121, 60);
+            textFecha.MaxLength = 10;
             textFecha.Name = "textFecha";
             textFecha.ReadOnly = true;
             textFecha.ShortcutsEnabled = false;
             textFecha.Size = new Size(80, 23);
             textFecha.TabIndex = 98;
+            textFecha.TextChanged += textFecha_TextChanged;
             // 
             // textCosto
             // 
             textCosto.Enabled = false;
             textCosto.Location = new Point(457, 168);
-            textCosto.MaxLength = 38;
+            textCosto.MaxLength = 25;
             textCosto.Name = "textCosto";
             textCosto.ShortcutsEnabled = false;
             textCosto.Size = new Size(81, 23);
@@ -276,7 +282,7 @@
             // textCantidad
             // 
             textCantidad.Location = new Point(312, 169);
-            textCantidad.MaxLength = 10000;
+            textCantidad.MaxLength = 25;
             textCantidad.Name = "textCantidad";
             textCantidad.ShortcutsEnabled = false;
             textCantidad.Size = new Size(66, 23);
@@ -299,7 +305,7 @@
             // 
             textExistencia.Enabled = false;
             textExistencia.Location = new Point(152, 170);
-            textExistencia.MaxLength = 10000;
+            textExistencia.MaxLength = 25;
             textExistencia.Name = "textExistencia";
             textExistencia.ShortcutsEnabled = false;
             textExistencia.Size = new Size(66, 23);
@@ -398,6 +404,7 @@
             buttImprimir.TabIndex = 86;
             buttImprimir.Text = "Imprimir";
             buttImprimir.UseVisualStyleBackColor = false;
+            buttImprimir.Click += buttImprimir_Click;
             // 
             // textDescripcion
             // 
@@ -436,13 +443,14 @@
             // textCodigo
             // 
             textCodigo.Location = new Point(130, 120);
-            textCodigo.MaxLength = 38;
+            textCodigo.MaxLength = 10;
             textCodigo.Name = "textCodigo";
             textCodigo.ShortcutsEnabled = false;
             textCodigo.Size = new Size(143, 23);
             textCodigo.TabIndex = 82;
             textCodigo.TextChanged += textCodigo_TextChanged;
             textCodigo.KeyPress += textCodigo_KeyPress;
+            textCodigo.PreviewKeyDown += textCodigo_PreviewKeyDown_1;
             // 
             // buttBuscarDoc
             // 
@@ -450,7 +458,7 @@
             buttBuscarDoc.FlatAppearance.BorderSize = 0;
             buttBuscarDoc.FlatStyle = FlatStyle.Flat;
             buttBuscarDoc.ForeColor = SystemColors.ControlLightLight;
-            buttBuscarDoc.Location = new Point(751, 62);
+            buttBuscarDoc.Location = new Point(751, 59);
             buttBuscarDoc.Name = "buttBuscarDoc";
             buttBuscarDoc.Size = new Size(66, 25);
             buttBuscarDoc.TabIndex = 113;

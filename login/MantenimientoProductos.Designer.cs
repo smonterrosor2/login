@@ -87,6 +87,7 @@
             textCodigo.Size = new Size(206, 23);
             textCodigo.TabIndex = 3;
             textCodigo.TextChanged += textCodigo_TextChanged;
+            textCodigo.KeyPress += Numeros_KeyPress;
             // 
             // label4
             // 

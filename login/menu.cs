@@ -103,21 +103,32 @@ namespace login
             showSubMenu(panelReportesSubMenu);
         }
 
-        private void btnStocks_Click(object sender, EventArgs e)
+        private void btnRUsuarios_Click(object sender, EventArgs e)
         {
+            opencontenedorForm(new ReporteUsuarios());
             //se coloca el codigo del enlace a lo que corresponde
             hideSubMenu();
         }
 
+        private void btnStocks_Click(object sender, EventArgs e)
+        {
+            //se coloca el codigo del enlace a lo que corresponde
+            opencontenedorForm(new Form2());
+            hideSubMenu();
+        }
+
+
         private void btnRExistencias_Click(object sender, EventArgs e)
         {
             //se coloca el codigo del enlace a lo que corresponde
+            opencontenedorForm(new CatalogoCategorias());
             hideSubMenu();
         }
 
         private void btnKardex_Click(object sender, EventArgs e)
         {
             //se coloca el codigo del enlace a lo que corresponde
+            opencontenedorForm(new Kardex());
             hideSubMenu();
         }
         //boton principal CONFIGURACION
@@ -133,11 +144,18 @@ namespace login
             hideSubMenu();
         }
 
+        private void button5_Click(object sender, EventArgs e)
+        {
+            //se coloca el codigo del enlace a lo que corresponde
+            opencontenedorForm(new ReporteUsuarios());
+            hideSubMenu();
+        }
+
         //PANEL CONTENEDOR-- NOS SIRVE PARA QUE MUESTRE TODO EN UNA SOLA VENTANA
         private Form activeForm = null;
         private void opencontenedorForm(Form contenedorForm)
         { //se utliza el if para abri y cerrar el formulario manteniendo activo
-            if (activeForm != null) 
+            if (activeForm != null)
                 activeForm.Close();
             activeForm = contenedorForm;
             contenedorForm.TopLevel = false;
@@ -150,5 +168,11 @@ namespace login
 
         }
 
+        private void button5_Click_1(object sender, EventArgs e)
+        {
+            //se coloca el codigo del enlace a lo que corresponde
+            opencontenedorForm(new ReporteUsuarios());
+            hideSubMenu();
+        }
     }
 }

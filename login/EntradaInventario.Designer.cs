@@ -126,6 +126,7 @@
             buttImprimir.TabIndex = 50;
             buttImprimir.Text = "Imprimir";
             buttImprimir.UseVisualStyleBackColor = false;
+            buttImprimir.Click += buttImprimir_Click;
             // 
             // textDescripcion
             // 

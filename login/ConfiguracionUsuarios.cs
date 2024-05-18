@@ -38,13 +38,13 @@ namespace login
             Direccion.Text.Trim(),
             No_Identificacion.Text.Trim(),
             //Tipo_Usuario.SelectedText,
-           // Contrasena.Text.Trim(),
+            // Contrasena.Text.Trim(),
             //Genero.SelectedText);
 
             Contrasena.Text = Convert.ToBase64String(Encoding.UTF8.GetBytes(Contrasena.Text)));
 
         }
-       
+
         //Inserta usuario en la base de datos//
         private void InsertarUsuario(string EMP_CODIGO, string Nombres, string Apellidos, string Direccion, string No_Identificacion, /*string Tipo_Usuario,*/ string Contrasena/*, string Genero*/)
         {
@@ -81,9 +81,7 @@ namespace login
                     command.Parameters.Add(new OracleParameter("Apellidos", Apellidos));
                     command.Parameters.Add(new OracleParameter("Direccion", Direccion));
                     command.Parameters.Add(new OracleParameter("No_Identificacion", No_Identificacion));
-                    //command.Parameters.Add(new OracleParameter("Tipo_Usuario", Tipo_Usuario));
                     command.Parameters.Add(new OracleParameter("Contrasena", Contrasena));
-                    //command.Parameters.Add(new OracleParameter("Genero", Genero));
 
                     int result = command.ExecuteNonQuery();
 
@@ -92,7 +90,7 @@ namespace login
                         LimpiarControles();
                         MessageBox.Show("Usuario registrado correctamente.");
 
-                      
+
                     }
                     else
                     {
@@ -154,6 +152,7 @@ namespace login
                     if (resultado > 0)
                     {
                         MessageBox.Show("Usuario eliminado con éxito.");
+                        LimpiarControles();
                         // Opcional: Limpia los controles del formulario si lo consideras necesario
                     }
                     else
@@ -217,12 +216,13 @@ namespace login
 
                             // Establece la selección de los ComboBox basándose en los nombres. 
                             // Esto requiere que los ComboBox ya tengan cargados todos los posibles valores.
-             //               Genero.SelectedIndex = Genero.FindStringExact(reader["Genero"].ToString());
-               //             Tipo_Usuario.SelectedIndex = Tipo_Usuario.FindStringExact(reader["Tipo_Usuario"].ToString());
+                            //               Genero.SelectedIndex = Genero.FindStringExact(reader["Genero"].ToString());
+                            //             Tipo_Usuario.SelectedIndex = Tipo_Usuario.FindStringExact(reader["Tipo_Usuario"].ToString());
                         }
                         else
                         {
                             MessageBox.Show("Usuario no encontrado.");
+
                             // Limpia los campos si se desea
                         }
                     }
@@ -233,9 +233,9 @@ namespace login
                 MessageBox.Show($"Error al buscar el usuario.");
             }
         }
-        
 
-      private void button3_Click(object sender, EventArgs e)
+
+        private void button3_Click(object sender, EventArgs e)
         {
 
             ActualizarUsuario(
@@ -245,11 +245,12 @@ namespace login
             Direccion.Text.Trim(),
             No_Identificacion.Text.Trim(),
             //Tipo_Usuario.SelectedText,
-            Contrasena.Text.Trim());
-           //Genero.SelectedText);
+            //Contrasena.Text.Trim());
+            //Genero.SelectedText);
+            Contrasena.Text = Convert.ToBase64String(Encoding.UTF8.GetBytes(Contrasena.Text)));
 
         }
-        private void ActualizarUsuario(string EMP_CODIGO, string Nombres, string Apellidos, string Direccion, string No_Identificacion, /*string Tipo_Usuario,*/ string Contrasena/*, string Genero*/)
+        private void ActualizarUsuario(string EMP_CODIGO, string Nombres, string Apellidos, string Direccion, string No_Identificacion, string Contrasena)
         {
             if (ConexionBD.Conex.State != ConnectionState.Open)
             {
@@ -259,38 +260,53 @@ namespace login
 
             try
             {
-
                 string query = @"UPDATE USUARIOS 
-                         SET EMP_CODIGO = :EMP_CODIGO, NOMBRES = :Nombres, APELLIDOS = :Apellidos, DIRECCION = :Direccion, NO_IDENTIFICACION = :No_Identificacion, TIPO_USUARIO = :Tipo_Usuarios, CONTRASEÑA = :Contrasena, GENERO = :genero
-                         WHERE EMP_CODIGO = :EMP_CODIGO";
+                     SET NOMBRES = :Nombres, 
+                         APELLIDOS = :Apellidos, 
+                         DIRECCION = :Direccion, 
+                         NO_IDENTIFICACION = :No_Identificacion, 
+                         CONTRASEÑA = :Contrasena
+                     WHERE EMP_CODIGO = :EMP_CODIGO";
 
                 using (OracleCommand command = new OracleCommand(query, ConexionBD.Conex))
                 {
+                    // Agregar parámetros al comando
+                    command.Parameters.Add(new OracleParameter("Nombres", Nombres));
+                    command.Parameters.Add(new OracleParameter("Apellidos", Apellidos));
+                    command.Parameters.Add(new OracleParameter("Direccion", Direccion));
+                    command.Parameters.Add(new OracleParameter("No_Identificacion", No_Identificacion));
+                    command.Parameters.Add(new OracleParameter("Contrasena", Contrasena));
                     command.Parameters.Add(new OracleParameter("EMP_CODIGO", EMP_CODIGO));
-                    command.Parameters.Add(new OracleParameter("NOMBRES", Nombres));
-                    command.Parameters.Add(new OracleParameter("APELLIDOS", Apellidos));
-                    command.Parameters.Add(new OracleParameter("DIRECCION", Direccion));
-                    command.Parameters.Add(new OracleParameter("NO_IDENTIFICACION", No_Identificacion));
-                    //command.Parameters.Add(new OracleParameter("TIPO_USUARIO", Tipo_Usuario));
-                    command.Parameters.Add(new OracleParameter("CONTRASEÑA", Contrasena));
-                    //command.Parameters.Add(new OracleParameter("GENERO", Genero));
 
+                    // Ejecutar el comando
                     int resultado = command.ExecuteNonQuery();
 
+                    // Comprobar el resultado de la ejecución
                     if (resultado > 0)
                     {
                         MessageBox.Show("Usuario actualizado con éxito.");
+                        LimpiarControles();
                     }
                     else
                     {
-                        MessageBox.Show("No se pudo actualizar el Usuario, el código no debe ser modifcado.");
+                        MessageBox.Show("No se pudo actualizar el Usuario, el código no debe ser modificado.");
+                        LimpiarControles();
                     }
                 }
             }
+            catch (OracleException ex)
+            {
+                // Muestra detalles específicos del error de Oracle
+                MessageBox.Show($"Error al actualizar el usuario: {ex.Message}\nCódigo de error: {ex.Number}\nFuente: {ex.Source}");
+                LimpiarControles();
+            }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al actualizar el usuario.");
+                // Muestra cualquier otro tipo de error general
+                MessageBox.Show($"Error inesperado: {ex.Message}\nFuente: {ex.Source}");
+                LimpiarControles();
             }
+
         }
 
         private void ConfiguracionUsuarios_Load(object sender, EventArgs e)
@@ -328,6 +344,57 @@ namespace login
         private void Tipo_Usuario_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void Numeros_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void Numeros_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void Letras_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Letras_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir solo letras (a-z, A-Z) y teclas de control (como Backspace)
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar))
+            {
+                e.Handled = true; // Ignorar el evento de tecla
+            }
+        }
+
+        private void Direccion_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void Direccion_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir letras (a-z, A-Z), números (0-9), guión (-) y teclas de control (como Backspace)
+            if (!char.IsControl(e.KeyChar) && !char.IsLetterOrDigit(e.KeyChar) && e.KeyChar != '-' && e.KeyChar != ' ')
+            {
+                e.Handled = true; // Ignorar el evento de tecla
+            }
+        }
+
+        private void No_Identificacion_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBoxMostrarContraseña_CheckedChanged(object sender, EventArgs e)
+        {
+            {
+                Contrasena.UseSystemPasswordChar = !checkBoxMostrarContraseña.Checked;
+            }
         }
     }
 }
