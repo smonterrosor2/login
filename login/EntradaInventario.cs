@@ -12,6 +12,8 @@ using login.Datos;
 using System.Net.NetworkInformation;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolBar;
+using iTextSharp.text.pdf;
+using iTextSharp.text;
 
 namespace login
 {
@@ -27,10 +29,12 @@ namespace login
             buttBuscar.Enabled = true;
             buttNuevo.Enabled = true;
             buttEliminar.Enabled = false;
+            buttImprimir.Enabled = false;
             buttBuscar.EnabledChanged += Button_EnabledChanged;
             buttInsertar.EnabledChanged += Button_EnabledChanged;
             buttNuevo.EnabledChanged += Button_EnabledChanged;
             buttEliminar.EnabledChanged += Button_EnabledChanged;
+            buttImprimir.EnabledChanged += Button_EnabledChanged;
 
             ApplyInitialButtonColors();
         }
@@ -311,6 +315,7 @@ namespace login
                     buttBuscar.Enabled = true;
                     buttNuevo.Enabled = true;
                     buttEliminar.Enabled = false;
+                    buttImprimir.Enabled = false;
                 }
             }
 
@@ -355,10 +360,20 @@ namespace login
                 if (result == DialogResult.Yes)
                 {
                     InsertarDatos();
-                   LimpiarControles();
+
+                    DialogResult resultPDF = MessageBox.Show("¿Desea generar un PDF de su transacción?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (resultPDF == DialogResult.Yes)
+                    {
+                        GeneradorPDF();
+                    }
+
+                    LimpiarControles();
                     CargarDatos.CargarUltimoIDInventario(textNoDoc, ConexionBD.Conex);
                     EstablecerFechaActual();
                 }
+
+                
             }
             else
             {
@@ -473,7 +488,24 @@ namespace login
                     if (count == 0)
                     {
                         MessageBox.Show("El número de documento no existe en la base de datos.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        textBuscarDoc.Text = "";
                         return;
+                    }
+                    else
+                    {
+                        // Si el documento existe, verificamos el tipo de documento
+                        string queryVerificarTipoDocumento = "SELECT TIPO_DOCUMENTO FROM INVENTARIO WHERE NO_DOCUMENTO = :noDocumento";
+                        using (OracleCommand commandTipoDocumento = new OracleCommand(queryVerificarTipoDocumento, ConexionBD.Conex))
+                        {
+                            commandTipoDocumento.Parameters.Add(new OracleParameter("noDocumento", noDocumento));
+
+                            string tipoDocumento = commandTipoDocumento.ExecuteScalar().ToString();
+                            if (tipoDocumento != "EI")
+                            {
+                                MessageBox.Show("El tipo de documento no es válido.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                return;
+                            }
+                        }
                     }
                 }
 
@@ -515,9 +547,10 @@ namespace login
                 {
                     commandFecha.Parameters.Add(new OracleParameter("noDocumento", noDocumento));
                     object fecha = commandFecha.ExecuteScalar();
-                    if (fecha != null)
+                    if (fecha != null && fecha is DateTime)
                     {
-                        textFecha.Text = fecha.ToString();
+                        DateTime fechaDateTime = (DateTime)fecha;
+                        textFecha.Text = fechaDateTime.ToString("yyyy-MM-dd"); 
                     }
                 }
 
@@ -525,6 +558,9 @@ namespace login
                 buttInsertar.Enabled = false;
                 buttNuevo.Enabled = false;
                 buttEliminar.Enabled = true;
+                buttImprimir.Enabled = true;
+
+                SumarColumnas();
 
             }
             catch (Exception ex)
@@ -700,6 +736,7 @@ namespace login
             UpdateButtonColors(buttNuevo);
             UpdateButtonColors(buttBuscar);
             UpdateButtonColors(buttEliminar);
+            UpdateButtonColors(buttImprimir);
             // Repetir para otros botones según sea necesario
         }
 
@@ -717,5 +754,87 @@ namespace login
             }
         }
 
+        private void buttImprimir_Click(object sender, EventArgs e)
+        {
+            GeneradorPDF();
+        }
+
+        private void GeneradorPDF()
+        {
+            // Crear un cuadro de diálogo para guardar el archivo PDF
+            SaveFileDialog guardarDialogo = new SaveFileDialog();
+            guardarDialogo.Filter = "Archivos PDF (*.pdf)|*.pdf";
+            guardarDialogo.Title = "Guardar PDF";
+
+            if (guardarDialogo.ShowDialog() == DialogResult.OK)
+            {
+                string nombreArchivo = guardarDialogo.FileName;
+
+
+                // Crear documento PDF
+                Document documento = new Document(PageSize.A4);
+
+                try
+                {
+                    // Crear un escritor de PDF
+                    PdfWriter.GetInstance(documento, new FileStream(nombreArchivo, FileMode.Create));
+
+                    // Abrir el documento
+                    documento.Open();
+
+                    // Agregar la palabra "Inventario" con estilo
+                    iTextSharp.text.Font tituloFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 24, BaseColor.BLACK);
+                    Paragraph titulo = new Paragraph("Salidas de Inventario", tituloFont);
+                    titulo.Alignment = Element.ALIGN_CENTER;
+                    documento.Add(titulo);
+
+
+                    // Crear contenido adicional para agregar al PDF
+                    string contenidoAdicional = $"Fecha : {textFecha.Text}\n";
+                    contenidoAdicional += $"Numero del documento: {textNoDoc.Text}\n\n";
+                    contenidoAdicional += $"Observaciones: {textObservacion.Text}\n\n";
+                    contenidoAdicional += $"Cantidad: {textCantidad2.Text}\n\n";
+                    contenidoAdicional += $"Total: {textTotal.Text}\n\n";
+
+
+                    documento.Add(new Paragraph(contenidoAdicional));
+
+
+                    // Agregar contenido del DataGridView al PDF
+                    PdfPTable tabla = new PdfPTable(dataGridView1.Columns.Count);
+                    tabla.WidthPercentage = 100;
+
+                    // Agregar encabezados de columna
+                    foreach (DataGridViewColumn columna in dataGridView1.Columns)
+                    {
+                        PdfPCell celda = new PdfPCell(new Phrase(columna.HeaderText));
+                        tabla.AddCell(celda);
+                    }
+
+                    // Agregar filas y celdas
+                    foreach (DataGridViewRow fila in dataGridView1.Rows)
+                    {
+                        foreach (DataGridViewCell celda in fila.Cells)
+                        {
+                            if (celda.Value != null)
+                            {
+                                tabla.AddCell(celda.Value.ToString());
+                            }
+                        }
+                    }
+
+                    documento.Add(tabla);
+
+                    // Cerrar el documento
+                    documento.Close();
+
+                    MessageBox.Show("PDF generado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al generar el PDF: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
     }
 }

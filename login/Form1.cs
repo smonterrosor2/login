@@ -167,7 +167,7 @@ namespace login
                 return false;
             }
         }
-       
+
 
         private void textuser_TextChanged(object sender, EventArgs e)
         {
@@ -213,6 +213,30 @@ namespace login
         private void textpass_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Letras_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Letras_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir solo letras (a-z, A-Z) y teclas de control (como Backspace)
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar))
+            {
+                e.Handled = true; // Ignorar el evento de tecla
+            }
+        }
+
+        private void checkBoxMostrarContraseña_CheckedChanged(object sender, EventArgs e)
+        {
+            textpass.UseSystemPasswordChar = !checkBoxMostrarContraseña.Checked;
         }
     }
 }

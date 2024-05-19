@@ -43,6 +43,7 @@
             btnminimizar = new PictureBox();
             btnmaximizar = new PictureBox();
             btnrestaurar = new PictureBox();
+            checkBoxMostrarContraseña = new CheckBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btncerrar).BeginInit();
@@ -101,6 +102,7 @@
             textuser.Text = "USUARIO";
             textuser.TextChanged += textuser_TextChanged;
             textuser.Enter += textuser_Enter;
+            textuser.KeyPress += Letras_KeyPress;
             textuser.Leave += textuser_Leave;
             // 
             // textpass
@@ -111,7 +113,7 @@
             textpass.ForeColor = SystemColors.InactiveBorder;
             textpass.Location = new Point(333, 184);
             textpass.Name = "textpass";
-            textpass.Size = new Size(387, 15);
+            textpass.Size = new Size(294, 15);
             textpass.TabIndex = 2;
             textpass.Text = "CONTRASEÑA";
             textpass.TextChanged += textpass_TextChanged;
@@ -217,6 +219,16 @@
             btnrestaurar.Visible = false;
             btnrestaurar.Click += btnrestaurar_Click;
             // 
+            // checkBoxMostrarContraseña
+            // 
+            checkBoxMostrarContraseña.AutoSize = true;
+            checkBoxMostrarContraseña.Location = new Point(659, 189);
+            checkBoxMostrarContraseña.Name = "checkBoxMostrarContraseña";
+            checkBoxMostrarContraseña.Size = new Size(15, 14);
+            checkBoxMostrarContraseña.TabIndex = 13;
+            checkBoxMostrarContraseña.UseVisualStyleBackColor = true;
+            checkBoxMostrarContraseña.CheckedChanged += checkBoxMostrarContraseña_CheckedChanged;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(6F, 15F);
@@ -224,6 +236,7 @@
             BackColor = Color.FromArgb(0, 0, 64);
             BackgroundImageLayout = ImageLayout.None;
             ClientSize = new Size(780, 340);
+            Controls.Add(checkBoxMostrarContraseña);
             Controls.Add(btnrestaurar);
             Controls.Add(btnmaximizar);
             Controls.Add(btnminimizar);
@@ -243,6 +256,7 @@
             Opacity = 0.9D;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
+            Load += Form1_Load;
             MouseDown += Form1_MouseDown;
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
@@ -270,5 +284,6 @@
         private PictureBox pictureBox3;
         private PictureBox btnmaximizar;
         private PictureBox btnrestaurar;
+        private CheckBox checkBoxMostrarContraseña;
     }
 }
